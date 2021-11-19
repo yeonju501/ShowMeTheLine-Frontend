@@ -5,7 +5,7 @@
       <router-link to="/movie-list">MovieList</router-link> |
       <router-link to="/my-movie-list">MyMovieList</router-link> | 
       <router-link to="/login">Login</router-link>| 
-      <router-link to="/singup">Signup</router-link> 
+      <router-link to="/signup">Signup</router-link> 
     </div>
     <router-view/>
   </div>

@@ -7,11 +7,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     movieCards: [],
-    movies: [],
   },
   mutations: {
     LOAD_MOVIE_CARDS: function(state, results) {
       state.movieCards = results
+    
     },
     // CREATE_MOVIE: function(state, movieItem){
     //   state.movies.push(movieItem)    
@@ -41,7 +41,8 @@ export default new Vuex.Store({
         // }
       })
         .then((res) => {
-          commit('LOAD_MOVIE_CARDS', res.data.results)
+          console.log(res)
+          commit('LOAD_MOVIE_CARDS', res.data)
         })
     },
     // createMovie: function({commit}, movieItem){
