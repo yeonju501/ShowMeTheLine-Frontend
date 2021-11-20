@@ -19,13 +19,18 @@
 import HomeMain from '@/components/HomeMain.vue'
 import MovieCard from '@/components/MovieCard.vue'
 import { mapState } from 'vuex'
-// import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode'
 
 export default {
   name: 'Home',
   components: {
     MovieCard,
     HomeMain,
+  },
+  data() {
+    return {
+      movieCards: [],
+    }
   },
 
   methods: {
@@ -36,7 +41,7 @@ export default {
     }
     return config
   },
-  },
+
   created: function() {
     this.$store.dispatch('LoadMovieCards')
   },
@@ -44,5 +49,6 @@ export default {
     ...mapState(['movieCards'])
   }
  }
+}
 
 </script>
