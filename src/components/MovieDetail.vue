@@ -62,6 +62,7 @@ export default {
 
     loadDetails: function(){
       const movie_pk = this.movie_pk
+      console.log(movie_pk)
       axios({
         method: 'get',
         url: `http://127.0.0.1:8000/movies/${movie_pk}/`,

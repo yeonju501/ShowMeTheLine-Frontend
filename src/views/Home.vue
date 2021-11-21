@@ -6,7 +6,7 @@
       <br>
       <br>
       <Sliders
-      :movies="recommendmovies"
+      :movies="movieCards"
       :title="recommendTitle"
       
       />
@@ -41,7 +41,6 @@ export default {
     return {
       buttonOn : true,
       movieCards: null,
-      recommendmovies:[],
       recommendTitle:'평점이 높은 영화',
 
       //스와이퍼
@@ -75,12 +74,12 @@ export default {
 
       })
         .then((res) => {
-          console.log(res)
-          const temp = []
-          res.data.forEach(function(element){
-          temp.push(element)
-          })
-          this.recommendmovies=temp
+          this.movieCards = res.data
+          // const temp = []
+          // res.data.forEach(function(element){
+          // temp.push(element)
+          // })
+          // this.recommendmovies=temp
         })
         .catch(err => console.log(err))
     },

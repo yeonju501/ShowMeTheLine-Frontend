@@ -15,9 +15,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // getToken: function (context) {
-    //   const token = localStorage.getItem('jwt-token');
-    //   context.commit('TOKEN', token);
+
     },
 
 

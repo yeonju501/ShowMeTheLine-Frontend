@@ -56,7 +56,7 @@ export default {
     signup: function () {
       axios({
         method: 'post',
-        url: 'http://127.0.0.1:8000/accounts/singup',
+        url: 'http://127.0.0.1:8000/accounts/signup/',
         data: this.credentials
         })
         .then(() => {

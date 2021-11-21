@@ -18,7 +18,7 @@
       :footer-bg-variant="black"
       hide-footer hide-header>
         <MovieDetail
-          :movie_pk = "this.movie.pk"
+          :movie_pk="this.movie.id"
         />
       </b-modal>
     </div>
@@ -38,6 +38,7 @@ export default {
   data(){
     return {
       black : 'black',
+      movie_pk : this.movie.id,
     }
   },
   computed: {
@@ -71,6 +72,7 @@ export default {
       // console.log('TQ',this.movie.title)
       // this.$bvModal.show('detail')
       this.$refs['detail'].show()
+      console.log(this.movie.id)
       // console.log(this.movie)
       // this.$router.push({name: 'MovieDetail', params: {movie_pk: this.movie.movie_id}})
     },
