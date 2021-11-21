@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
-import MovieList from '../views/MovieList.vue'
-import MyList from '../views/MyList.vue'
+import LikedMovies from '../views/LikedMovies.vue'
+import MovieDetail from '../components/MovieDetail.vue'
+import Movies from '../views/Movies.vue'
 import Signup from '../views/accounts/Signup'
 import Login from '../views/accounts/Login'
 
@@ -15,16 +15,15 @@ const routes = [
     name: 'Home',
     component: Home
   },
-
   {
-    path: '/my-list',
-    name: 'MyList',
-    component: MyList,
+    path: '/liked-movies',
+    name: 'LikedMovies',
+    component: LikedMovies,
   },
   {
-    path: '/movie-list',
-    name: 'MovieList',
-    component: MovieList,
+    path: '/movies',
+    name: 'Movies',
+    component: Movies
   },
   {
     path: '/accounts/signup',
@@ -35,6 +34,12 @@ const routes = [
     path: '/accounts/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/moviedetail',
+    name: 'MovieDetail',
+    component: MovieDetail,
+    props: true
   },
 ]
 
