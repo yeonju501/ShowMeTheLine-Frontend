@@ -11,11 +11,10 @@
       </div>
       <b-modal 
       ref="detail" 
-      size="lg" 
-      class="bg-black" 
-      :header-bg-variant="black"
-      :body-bg-variant="black"
-      :footer-bg-variant="black"
+      size="xl" 
+      :header-bg-variant="secondary"
+      :body-bg-variant="secondary"
+      :footer-bg-variant="secondary"
       hide-footer hide-header>
         <MovieDetail
           :movie_pk="this.movie.id"
@@ -82,11 +81,11 @@ export default {
 
 <style>
 .bgblack {
-  background-color: black;
+  background-color: rgba(20, 20, 20, 0);
 }
-.modal_content
+/* .modal_content
 .modal_header
 .modal_body {
-  background-color: black;
-}
+  background-color: rgb(192, 68, 68);
+} */
 </style>

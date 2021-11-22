@@ -6,8 +6,7 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import vuetify from './plugins/vuetify'
-// import 'swiper/swiper-bundle.css' 
-import "swiper/css/swiper.css";
+import "swiper/css/swiper.css"
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 

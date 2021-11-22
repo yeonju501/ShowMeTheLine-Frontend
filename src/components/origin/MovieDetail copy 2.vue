@@ -1,41 +1,66 @@
 <template>
-<div class='text-light'> 
-  <div class="mb-3 my-5">
-    <div class="row g-1 rounded" :style="{ 
-        backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0) 70%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 20%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
-        backgroundSize: '700px 100%',
+  
+  <div class="mb-3 my-4 bgblack text-white" style="width: auto;">
+    <div class="row g-0 rounded" :style="{ 
+        backgroundImage: `url('${'http://image.tmdb.org/t/p/w500'+backdrop_path}')`,
+        backgroundSize: '840px 100%',
         backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
         height: '640px'}">
-        
-        <div class="col">
-          <div class="fw-bold mb-3">
-              <span class="fs-3">{{ title }}</span>
-              <span class="fs-7 ms-3">({{ release_date.slice(0, 4)}})</span>
+
+       <div class="col-5">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="card-title fw-bold fs-1">{{ title }}</div>
+                </div>
+              </div>
+            </div>
+      
+       <div class="fw-bold mb-3">
+              <span class="fs-4">{{ title }}</span>
+              <span class="fs-7 ms-3">{{ release_date.slice(0, 4)}}년</span>
               <span class="fs-7 ms-2">{{ duration }}분</span>
             </div>
 
-          <div class="fs-5 fw-bold pt-3 pb-2">명대사자리</div>
-          <p class="card-text ellipsis underline" id="ellipsis-overview">{{ line }}</p>
+      <div class="fs-5 fw-bold pt-3 pb-2">줄거리</div>
+            <p class="card-text ellipsis underline" id="ellipsis-overview">{{ overview }}</p>
+            <div class="feature-box row">
+              <div class="fw-bold col-2">감독: </div>
+              <div class="col">
+                <span class="underline"> 
+                {{ director }}
+                </span>
+              </div>
+            </div>
+            <div class="feature-box row">
+              <span class="fw-bold col-2">출연진: </span>
+              <div class="col">
+                <span>{{ actor }} </span>
+              </div>
+            </div>
 
 
-          <div class="fs-5 fw-bold pt-3 pb-2">줄거리</div>
-          <p class="card-text ellipsis underline" id="ellipsis-overview">{{ overview }}</p>
+    <div class="col-md-4" >
+      <br>
+      <img :src="getBackImage" alt=""  
+      style = "margin-left: 80px;">
+    </div>
+    <hr>
 
-          <div class="feature-box row">
-            <span>감독: {{ director }}</span>
-          </div>
-          
-          <div class="feature-box row">
-            <span>출연진: {{ actor }}</span>
-          </div>
-          
-        </div> 
-
+    <div class="row no-gutters" style="display: inline-block;">
+      <div class="card-body">
+        <br>
+        <h1 class="card-title">{{ title }}</h1>
+        <br>
+        <h5>개봉일: {{ release_date }} / 평점: {{ vote_average }}</h5> 
+        <br>
+        <p class="card-text">{{ overview }}</p>
+        <br>
+        <!-- <button @click="getYoutubeReview" class="btn btn-danger">Youtube Review</button> -->
+      </div> 
     </div>
   </div>
-</div>
-
+  </div>
 </template>
 
 <script>
@@ -92,11 +117,6 @@ export default {
       this.vote_average = res.data.vote_average
       this.overview = res.data.overview
       this.release_date = res.data.release_date
-      this.duration = res.data.duration
-      this.director = res.data.director
-      this.title = res.data.title
-      this.actor = res.data.actor
-
       }).catch((err)=>{
         console.error(err)
       })
@@ -106,9 +126,9 @@ export default {
     getImage: function() {
       return 'http://image.tmdb.org/t/p/w500'+this.poster_path
     },
-    // getBackImage: function() {
-    //   return 'http://image.tmdb.org/t/p/w500'+this.backdrop_path
-    // },
+    getBackImage: function() {
+      return 'http://image.tmdb.org/t/p/w500'+this.backdrop_path
+    },
   },
   
   created: function() {
@@ -126,12 +146,23 @@ export default {
 
 <style scopeed>
 .ellipsis {
-  width: 400px;
+  width: 500px;
+  overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .card {
   background-color: inherit;
 }
+/* .card-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+} */
 .additional-info-card {
   /* border-radius: .3rem; */
   padding-bottom: 30px;

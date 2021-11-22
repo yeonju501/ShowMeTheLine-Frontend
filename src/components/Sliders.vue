@@ -46,7 +46,10 @@ export default {
     return {
       buttonOn : true,
       swiperOptions: {
-          slidesPerView: 'auto',
+          slidesPerView: '6',
+          centeredSlides: false,
+          
+
           
           pagination: {
             el: '.swiper-pagination',
