@@ -12,10 +12,13 @@
       <b-modal 
       ref="detail" 
       size="xl" 
+      hide-header
+      hide-footer
       :header-bg-variant="secondary"
-      :body-bg-variant="secondary"
+      :body-bg-variant="dark"
+      :body-text-variant="ligth"
       :footer-bg-variant="secondary"
-      hide-footer hide-header>
+      >
         <MovieDetail
           :movie_pk="this.movie.id"
         />
@@ -83,9 +86,9 @@ export default {
 .bgblack {
   background-color: rgba(20, 20, 20, 0);
 }
-/* .modal_content
+.modal_content
 .modal_header
 .modal_body {
   background-color: rgb(192, 68, 68);
-} */
+}
 </style>

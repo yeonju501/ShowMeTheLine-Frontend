@@ -1,7 +1,7 @@
 <template>
-<div class='text-light bg-black'> 
-  <div >
-    <div class="row  rounded" :style="{ 
+<div class='text-light'> 
+  <div class="mb-3 my-5">
+    <div class="row g-1 rounded" :style="{ 
         backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0) 70%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 20%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
         backgroundSize: '700px 100%',
         backgroundPosition: 'right center',
@@ -29,24 +29,50 @@
           <div class="feature-box row">
             <span>출연진: {{ actor }}</span>
           </div>
-          <br>
+          
           <form @submit="commentSubmit">
           <div class="form-group">
+            <label for="star"></label>
+            <star-rating
+              id="star" 
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              v-bind:show-rating="false"
+              inactive-color="#000"
+              active-color="#ff0"
+              border-color="#ff0"
+              v-bind:padding="8"
+              v-bind:border-width="2"
+              v-bind:star-size="30"
+              @rating-selected="setRating">
+            </star-rating>
+            <hr>
             <label for="comment">리뷰</label>
             <textarea class="form-control" id="comment" rows="2" v-model="mycomment" @keypress.enter="commentSubmit"></textarea>
             </div>
             <br>
             <button class="btn btn-dark">제출</button>
           </form>
+
           <hr>
           <MovieComment 
-          v-for="(comment, idx) in comments"
+            v-for="(comment, idx) in paginatedData"
             :key="idx"
             :comment="comment"
             :movie_pk="movie_pk"
-        />
+            
+          />
           
- 
+          <!-- <div class="btn-cover">
+          <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+            이전
+          </button>
+          <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+          <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+            다음
+          </button>
+          </div> -->
+          
         </div> 
 
     </div>
@@ -59,12 +85,12 @@
 import axios from 'axios'
 // import jwt_decode from 'jwt-decode'
 import MovieComment from '../components/MovieComment.vue'
-
+import StarRating from 'vue-star-rating'
 
 export default {
   components: {
     MovieComment,
-    
+    StarRating
   },
   data() {
     return {
@@ -82,10 +108,9 @@ export default {
       line:'',
       comments:[],
       mycomment:'',
-      myrating:0,
+      myrating:'',
       pageNum: 0,
       pageSize: 5,
-      
       
     }
   },
@@ -94,6 +119,13 @@ export default {
      
   },
   methods: {
+    nextPage () {
+      this.pageNum += 1;
+    },
+    prevPage () {
+      this.pageNum -= 1;
+    },
+    
     setToken: function () {
     const token = localStorage.getItem('jwt')
     const config = {
@@ -139,78 +171,34 @@ export default {
           temp.push(element)  
         })
         this.comments = temp
-        
       }).catch((err)=>{
       console.error(err)
     })
-    },
-
-    commentSubmit(event) {
-      event.preventDefault()
-      if (this.mycomment.length !== 0) {
-        const movie_pk = this.movie_pk
-        const user = this.review.user
-        console.log(user)
-        axios({
-          method: 'post',
-          url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-          headers: this.setToken(),
-          data: {
-            user: user,
-            content: this.mycomment,
-          },
-        }).then(()=>{
-          // console.log(res.data)
-          axios({
-            url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-            headers: this.setToken(),
-            method: 'GET',
-          }).then((res)=>{
-              const temp = []
-              res.data.forEach((element)=>{
-                temp.push(element)
-              })
-              this.comments = temp
-              // this.comments = _.sortBy(temp,
-          }).catch((err)=>{
-            console.error(err)
-          })
-        }).catch((err)=>{
-          console.error(err)
-        })
-        this.mycomment = ''
-      } else {
-        alert("댓글을 입력하세요.")
-      }
-    },
-
-    onParentDeleteComment: function() {
-      const movie_pk = this.movie_pk
-      axios({
-        url: `http://127.0.0.1:8000/movies/${movie_pk}/reviews/`,
-        method: 'GET',
-      }).then((res)=>{
-          const temp = []
-          res.data.forEach((element)=>{
-            temp.push(element)
-          })
-          this.comments = temp
-      }).catch((err)=>{
-        console.error(err)
-      })
-    },
-
+    }
   },
   computed: {
     getImage: function() {
       return 'http://image.tmdb.org/t/p/w500'+this.poster_path
     },
-  
+    pageCount () {
+      let listLeng = this.comments.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+      if (listLeng % listSize > 0) page += 1;
+      
+      return page;
+    },
+    paginatedData () {
+      const start = this.pageNum * this.pageSize,
+            end = start + this.pageSize;
+      // const sortedComments = _.sortBy(this.comments, 'id').reverse()
+      return this.comments.slice(start, end);
+    },
   },
   
   created: function() {
     if (localStorage.getItem('jwt')){
-      this.loadDetails()
+      this.loadDetails(),
       this.loadComments()
     } else {
       this.$router.push({name:'Login'})
@@ -255,5 +243,4 @@ p.underline:hover {
     --animate-duration  : 1.2s;
     --animate-delay     : 0.5s;
 }
-
 </style>

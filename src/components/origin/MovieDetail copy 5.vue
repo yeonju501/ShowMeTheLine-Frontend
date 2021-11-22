@@ -40,13 +40,25 @@
           </form>
           <hr>
           <MovieComment 
-          v-for="(comment, idx) in comments"
-            :key="idx"
-            :comment="comment"
-            :movie_pk="movie_pk"
+          v-for="(comment, idx) in paginatedData"
+          :key="idx"
+          :comment="comment"
+          :movie_pk="movie_pk"
+          @onParentDeleteComment="onParentDeleteComment"
         />
           
- 
+          
+          <div class="btn-cover">
+          <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+            이전
+          </button>
+          <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
+          <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+            다음
+          </button>
+          </div>
+          
+          
         </div> 
 
     </div>
@@ -102,6 +114,13 @@ export default {
     return config
     },
 
+    nextPage () {
+      this.pageNum += 1;
+    },
+    prevPage () {
+      this.pageNum -= 1;
+    },
+
     loadDetails: function(){
       const movie_pk = this.movie_pk
       console.log(movie_pk)
@@ -149,6 +168,9 @@ export default {
       event.preventDefault()
       if (this.mycomment.length !== 0) {
         const movie_pk = this.movie_pk
+        // console.log("무비 피케이",movie_pk)
+        // const token = localStorage.getItem('jwt')
+        // console.log(jwt_decode(token))
         const user = this.review.user
         console.log(user)
         axios({
@@ -158,6 +180,7 @@ export default {
           data: {
             user: user,
             content: this.mycomment,
+            // rating: this.myrating,
           },
         }).then(()=>{
           // console.log(res.data)
@@ -183,7 +206,6 @@ export default {
         alert("댓글을 입력하세요.")
       }
     },
-
     onParentDeleteComment: function() {
       const movie_pk = this.movie_pk
       axios({
@@ -200,12 +222,30 @@ export default {
       })
     },
 
+    setRating(rating) {
+      // console.log(rating)
+      this.myrating = rating * 2
+    }
   },
   computed: {
     getImage: function() {
       return 'http://image.tmdb.org/t/p/w500'+this.poster_path
     },
-  
+    pageCount () {
+      let listLeng = this.comments.length,
+          listSize = this.pageSize,
+          page = Math.floor(listLeng / listSize);
+      if (listLeng % listSize > 0) page += 1;
+      
+
+      return page;
+    },
+    paginatedData () {
+      const start = this.pageNum * this.pageSize,
+            end = start + this.pageSize;
+      // const sortedComments = _.sortBy(this.comments, 'id').reverse()
+      return this.comments.slice(start, end);
+    },
   },
   
   created: function() {
