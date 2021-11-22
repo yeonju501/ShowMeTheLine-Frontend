@@ -75,11 +75,6 @@ export default {
       })
         .then((res) => {
           this.movieCards = res.data
-          // const temp = []
-          // res.data.forEach(function(element){
-          // temp.push(element)
-          // })
-          // this.recommendmovies=temp
         })
         .catch(err => console.log(err))
     },

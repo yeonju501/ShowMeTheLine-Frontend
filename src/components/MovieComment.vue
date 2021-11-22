@@ -2,8 +2,8 @@
   <span>
    
     <div class="row">
-      <div class="col-2"><p><b>{{ getName }}</b></p></div>
-      <div class="col-8"><p>{{ getComment }}</p></div>
+      <div class="col-2"><p><b>{{ comment.content }}</b></p></div>
+      <div class="col-8"><p>{{ comment.user.username }}</p></div>
       <div class="col-2"> <b><a href="" v-if="getName == currentName" @click="deleteComment">삭제</a></b></div>
     </div>
     <hr style="background-color:white"> 

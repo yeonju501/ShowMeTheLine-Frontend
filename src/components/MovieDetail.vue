@@ -33,16 +33,16 @@
           <form @submit="commentSubmit">
           <div class="form-group">
             <label for="comment">리뷰</label>
-            <textarea class="form-control" id="comment" rows="2" v-model="mycomment" @keypress.enter="commentSubmit"></textarea>
+            <textarea class="form-control" id="comment" rows="2" v-model.trim="comment" @keypress.enter="commentSubmit"></textarea>
             </div>
             <br>
             <button class="btn btn-dark">제출</button>
           </form>
           <hr>
           <MovieComment 
-          v-for="(comment, idx) in comments"
-            :key="idx"
-            :comment="comment"
+          v-for="(content, id) in comments"
+            :key="id"
+            :comment="content"
             :movie_pk="movie_pk"
         />
           
@@ -81,7 +81,8 @@ export default {
       overview:'',
       line:'',
       comments:[],
-      mycomment:'',
+      comment: null,
+      content: null,
       myrating:0,
       pageNum: 0,
       pageSize: 5,
@@ -147,34 +148,38 @@ export default {
 
     commentSubmit(event) {
       event.preventDefault()
-      if (this.mycomment.length !== 0) {
+      
+      const commentItem = {
+        content: this.comment,
+      }
+      if (commentItem.content) {
         const movie_pk = this.movie_pk
-        const user = this.review.user
-        console.log(user)
+        console.log(commentItem)
+        // const user = this.review.user
+        // console.log(user)
         axios({
           method: 'post',
           url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
+          data: commentItem,
           headers: this.setToken(),
-          data: {
-            user: user,
-            content: this.mycomment,
-          },
-        }).then(()=>{
-          // console.log(res.data)
-          axios({
-            url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-            headers: this.setToken(),
-            method: 'GET',
-          }).then((res)=>{
-              const temp = []
-              res.data.forEach((element)=>{
-                temp.push(element)
-              })
-              this.comments = temp
-              // this.comments = _.sortBy(temp,
-          }).catch((err)=>{
-            console.error(err)
-          })
+        }).then((res)=>{
+          console.log(res.data)
+          this.loadComments()
+          // axios({
+          //   url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
+          //   headers: this.setToken(),
+          //   method: 'GET',
+          // }).then((res)=>{
+          //     const temp = []
+          //     res.data.forEach((element)=>{
+          //       console.log(element)
+          //       temp.push(element)
+          //     })
+          //     this.comments = temp
+          //     // this.comments = _.sortBy(temp,
+          // }).catch((err)=>{
+          //   console.error(err)
+          // })
         }).catch((err)=>{
           console.error(err)
         })

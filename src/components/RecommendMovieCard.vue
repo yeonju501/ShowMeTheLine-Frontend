@@ -74,7 +74,6 @@ export default {
       // console.log('TQ',this.movie.title)
       // this.$bvModal.show('detail')
       this.$refs['detail'].show()
-      console.log(this.movie.id)
       // console.log(this.movie)
       // this.$router.push({name: 'MovieDetail', params: {movie_pk: this.movie.movie_id}})
     },
