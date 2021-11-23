@@ -6,6 +6,7 @@ import MovieDetail from '../components/MovieDetail.vue'
 import Movies from '../views/Movies.vue'
 import Signup from '../views/accounts/Signup'
 import Login from '../views/accounts/Login'
+import Profile from '../views/Profile.vue'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     name: 'MovieDetail',
     component: MovieDetail,
     props: true
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
   },
 ]
 

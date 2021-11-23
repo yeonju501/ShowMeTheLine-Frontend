@@ -22,6 +22,12 @@
                 <b>내가 찜한 콘텐츠</b> 
               </router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="profile">
+
+                <b>프로필</b> 
+              </router-link>
+            </li>
           </ul>
         </b-navbar-nav>
 
