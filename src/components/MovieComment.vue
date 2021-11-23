@@ -17,8 +17,8 @@
     <div class="row">
       <div class="col-2"><p>{{ comment.user.username }}</p></div>
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
-      <div class="col-1"> <b><a href="" v-if="유저이름=지금이름" @click="deleteComment">삭제</a></b></div>
-      <div class="col-1"> <b><a href="" v-if="유저이름=지금이름" @click="updateComment">수정</a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="deleteComment">삭제</a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="updateComment">수정</a></b></div>
         
     </div>
     <hr style="background-color:white"> 
@@ -71,6 +71,8 @@ export default {
         console.error(err)
       })
     }
+    
+    
   },
 
   computed: {
