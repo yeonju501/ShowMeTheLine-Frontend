@@ -50,7 +50,7 @@ export default {
           this.movieCards = res.data
         })
         .catch(err => console.log(err))
-    },
+    }, 
 
   },
   created: function() {
@@ -60,8 +60,7 @@ export default {
       this.$router.push({name:'Login'})
     }
   },
-  computed: {
-  }
  }
+
 
 </script>
