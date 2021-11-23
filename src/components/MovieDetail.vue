@@ -2,11 +2,11 @@
 <div class='text-light'> 
   <div >
     <div class="row rounded" :style="{ 
-        backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0) 70%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 20%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
+        backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0.5) 5%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 10%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
         backgroundSize: '700px 100%',
         backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
-        height: '640px'}">
+        height: '1000px'}">
         
         <div class="col">
           <div class="fw-bold mb-3">

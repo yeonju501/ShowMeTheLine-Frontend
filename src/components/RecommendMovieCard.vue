@@ -14,10 +14,17 @@
             <v-overlay
               v-if="hover"
               absolute
-              color="#000000"
+              color="rgb(0, 0, 0, 1)"
             >
-              <div class="m-3 font-center h4" > 
-                {{line}} 
+              <div class="m-1 font-center h4" > 
+                <v-card 
+                class="mx-auto"
+                color="#323232"
+                dark
+                
+                >
+                <v-card-text class=" font-weight-bold" style="line-height: 1.5; font-size:0.89em">{{line}}</v-card-text>
+                </v-card>
               </div>
             </v-overlay>
           </v-fade-transition>
@@ -25,7 +32,7 @@
         </v-card>  
       </template>
     </v-hover>
-
+      
       <b-modal 
       ref="detail" 
       size="xl" 
@@ -41,6 +48,44 @@
           :movie_pk="this.movie.id"
         />
       </b-modal>
+
+      <!-- <div id="app">
+    <v-app v-app id="inspire">
+    <v-row justify="center">
+      <v-dialog
+        v-model="dialog"
+        width="600px"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            color="primary"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            Open Dialog
+          </v-btn>
+        </template>
+
+        <v-card>
+          <v-card-title>
+            <span class="text-h5"></span>
+          </v-card-title>
+          <v-card-text>
+            <MovieDetail
+          :movie_pk="this.movie.id"
+        />
+          </v-card-text>
+
+        </v-card>
+      </v-dialog>
+    </v-row>
+  </v-app>
+</div> -->
+
+
+
+
     </div>
   </swiper-slide>
   
@@ -57,6 +102,7 @@ export default {
   },
   data(){
     return {
+      dialog:false,
       black : 'black',
       movie_pk : this.movie.id,
       title: this.movie.title,

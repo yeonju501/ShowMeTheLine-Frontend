@@ -11,13 +11,15 @@
     </div>
     <v-fade-transition>
         <v-overlay
+        class="v-card--reveal"
           v-if="hover"
           absolute
           color="#000000"
+
         >
-          <div class="m-3 font-center h4" > 
-            {{movieCard.line}} 
-          </div>
+          <p class="fw-bold m-3 font-center h3 " > 
+            {{movieCard.line}}
+          </p>
         </v-overlay>
       </v-fade-transition>
     </v-card> 
@@ -94,6 +96,15 @@ export default {
 </script>
 
 <style>
+.v-card--reveal {
+align-items: center;
+bottom: 0;
+justify-content: center;
+opacity: .8;
+position: absolute;
+width: 100%;
+}
+
 .bgblack {
   background-color: rgba(20, 20, 20, 0);
 }

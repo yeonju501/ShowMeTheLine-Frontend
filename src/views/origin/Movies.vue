@@ -1,12 +1,12 @@
 <template>
   <div class="container">
      <div class="row">
-      <form @submit="searchMovie" class="form-inline ml-auto mr-2">
+      <form @submit="searchSome" class="form-inline ml-auto mr-2">
         <input class="form-control mr-sm-2" v-model="search" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>
       <form>
-        <button class="btn btn-outline-light ml-auto mr-4" onClick="history.go(0)">새로고침</button>
+        <button class="btn btn-primary ml-auto mr-4" onClick="history.go(0)">Refresh</button>
       </form>
     </div>  
 
@@ -14,7 +14,7 @@
     <!-- <div class="container"> -->
       <div class="row">
       <movie-card
-        v-for="movieCard in paginatedData"
+        v-for="movieCard in movieCards"
         :key="movieCard.id"
         :movieCard="movieCard"
         class="col-12 col-sm-4 py-3"
@@ -27,7 +27,7 @@
       <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
         이전
       </button>
-      <span class="page-count"> {{ pageNum + 1 }} / {{ pageCount }} </span>
+      <span class="page-count">{{ pageNum + 1 }} / {{ pageCount }} 페이지</span>
       <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
         다음
       </button>
@@ -71,11 +71,8 @@ export default {
 
       })
         .then((res) => {
-          const temp = []
-          res.data.forEach(function(element){
-            temp.push(element)
-          })
-          this.movies = temp
+          console.log(res)
+          this.movieCards = res.data
         })
         .catch(err => console.log(err))
     }, 
@@ -87,7 +84,7 @@ export default {
       this.pageNum -= 1;
     },
 
-    searchMovie(event) {
+    searchSome(event) {
       event.preventDefault()
       const keyword = this.search
       const temp = []
