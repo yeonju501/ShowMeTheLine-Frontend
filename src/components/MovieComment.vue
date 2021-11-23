@@ -1,10 +1,25 @@
 <template>
   <span>
-   
+    <star-rating 
+      v-bind:increment="0.5"
+      v-bind:max-rating="5"
+      v-bind:rating="getRating"
+      v-bind:show-rating="false"
+      v-bind:read-only="true"
+      inactive-color="#000"
+      active-color="#ff0"
+      border-color="#ff0"
+      v-bind:padding="8"
+      v-bind:border-width="2"
+      v-bind:star-size="10"
+      @rating-selected="setRating">
+    </star-rating>
     <div class="row">
-      <div class="col-2"><p><b>{{ comment.content }}</b></p></div>
-      <div class="col-8"><p>{{ comment.user.username }}</p></div>
-      <div class="col-2"> <b><a href="" v-if="getName == currentName" @click="deleteComment">삭제</a></b></div>
+      <div class="col-2"><p>{{ comment.user.username }}</p></div>
+      <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
+      <div class="col-1"> <b><a href="" v-if="유저이름=지금이름" @click="deleteComment">삭제</a></b></div>
+      <div class="col-1"> <b><a href="" v-if="유저이름=지금이름" @click="updateComment">수정</a></b></div>
+        
     </div>
     <hr style="background-color:white"> 
     
@@ -12,10 +27,14 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
+import StarRating from 'vue-star-rating'
+// import CommentUpdate from '../components/CommentUpdate.vue'
 
 export default {
   components: {
+    StarRating,
+    // CommentUpdate
   },
 
   data() {
@@ -39,43 +58,29 @@ export default {
     return config
     },
 
-  // loadComments: function(){
-  //   const movie_pk = this.movie_pk
-  //   axios({
-  //     method: 'get',
-  //     url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-  //     headers: this.setToken(),
-  //   })
-  //   .then((res)=> {
-  //     this.user = res.data.user
-  //     this.content = res.data.content
-  //     this.content = res.data.rank
-  //   })
-  // },
-
-  // loadComments: function(){
-  //     const movie_pk = this.movie_pk
-  //     axios({
-  //       method: 'get',
-  //       url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-  //       headers: this.setToken(),
-  //     }).then((res)=> {
-  //       const temp = []
-  //       res.data.forEach(element => {
-  //         temp.push(element)  
-  //       })
-  //       this.comments = temp
-        
-  //     }).catch((err)=>{
-  //     console.error(err)
-  //   })
-  //   },
+    deleteComment(event) {
+      event.preventDefault()
+      const movie_pk = this.movie_pk
+      const review_pk = this.comment.id
+      axios({
+        url: `http://127.0.0.1:8000/movies/${movie_pk}/review/${review_pk}` ,
+        method: 'DELETE'
+      }).then(()=>{
+        this.$emit('onParentDeleteComment')
+      }).catch((err)=>{
+        console.error(err)
+      })
+    }
+  },
 
   computed: {
     computed: {
-    getComment: function() {
-      return this.review.content
-    }
+    getComment() {
+      return this.comment.content
+    },
+    getRating() {
+      return this.comment.rating / 2
+    },
   },
   },
 
@@ -90,7 +95,7 @@ export default {
   }
 
 
-}
+
 </script>
 
 <style>

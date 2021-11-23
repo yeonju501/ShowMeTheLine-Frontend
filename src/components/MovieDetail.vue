@@ -32,6 +32,21 @@
           <br>
           <form @submit="commentSubmit">
           <div class="form-group">
+            <label for="star">별점</label>
+            <star-rating
+              id="star" 
+              v-bind:increment="0.5"
+              v-bind:max-rating="5"
+              v-bind:show-rating="false"
+              inactive-color="#000"
+              active-color="#ff0"
+              border-color="#ff0"
+              v-bind:padding="8"
+              v-bind:border-width="2"
+              v-bind:star-size="30"
+              @rating-selected="setRating">
+            </star-rating>
+            <hr>
             <label for="comment">리뷰</label>
             <textarea class="form-control" id="comment" rows="2" v-model.trim="comment" @keypress.enter="commentSubmit"></textarea>
             </div>
@@ -44,6 +59,7 @@
             :key="id"
             :comment="content"
             :movie_pk="movie_pk"
+            @onParentDeleteComment="onParentDeleteComment"
         />
           
  
@@ -59,12 +75,14 @@
 import axios from 'axios'
 // import jwt_decode from 'jwt-decode'
 import MovieComment from '../components/MovieComment.vue'
+import StarRating from 'vue-star-rating'
+
 
 
 export default {
   components: {
     MovieComment,
-    
+    StarRating
   },
   data() {
     return {
@@ -95,6 +113,11 @@ export default {
      
   },
   methods: {
+    setRating(rating) {
+      // console.log(rating)
+      this.myrating = rating * 2
+    },
+
     setToken: function () {
     const token = localStorage.getItem('jwt')
     const config = {
@@ -192,7 +215,7 @@ export default {
     onParentDeleteComment: function() {
       const movie_pk = this.movie_pk
       axios({
-        url: `http://127.0.0.1:8000/movies/${movie_pk}/reviews/`,
+        url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
         method: 'GET',
       }).then((res)=>{
           const temp = []
