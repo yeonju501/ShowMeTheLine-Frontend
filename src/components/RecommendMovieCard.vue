@@ -18,7 +18,7 @@
             >
               <div class="m-3 font-center h4" > 
                 {{line}} 
-                명대사띄우기명대사띄우기명대사띄우기명대사띄우기</div>
+              </div>
             </v-overlay>
           </v-fade-transition>
           <!-- <p class="content-font" style="font-weight: bold;">{{ movie.title }}</p> -->

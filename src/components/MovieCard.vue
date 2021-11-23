@@ -1,14 +1,28 @@
 <template>
-<div @click="getMovieDetail()" class="col-12 col-sm-4 py-3">
-  <div class="card  m-3 text-black">
-    <div class="h-100">
-      <img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster">
-    </div>
+<div @click="getMovieDetail()" class="container">
+  <v-hover style="margin-bottom:10px">
+      <template v-slot:default="{ hover }">
+  <v-card class="card  m-3 text-black">
+      <v-img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster"></v-img>
     <div class="card-body ">
       <h5 class="card-title fw-bolder" >
         {{ movieCard.title }}
       </h5>
     </div>
+    <v-fade-transition>
+        <v-overlay
+          v-if="hover"
+          absolute
+          color="#000000"
+        >
+          <div class="m-3 font-center h4" > 
+            {{movieCard.line}} 
+          </div>
+        </v-overlay>
+      </v-fade-transition>
+    </v-card> 
+    </template>
+    </v-hover>
       <b-modal 
       ref="detail" 
       size="xl" 
@@ -24,7 +38,6 @@
         />
       </b-modal>
   </div>
-</div>
 
 </template>
 
@@ -81,5 +94,12 @@ export default {
 </script>
 
 <style>
-
+.bgblack {
+  background-color: rgba(20, 20, 20, 0);
+}
+.modal_content
+.modal_header
+.modal_body {
+  background-color: rgb(192, 68, 68);
+}
 </style>

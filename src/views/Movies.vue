@@ -6,6 +6,7 @@
         v-for="movieCard in movieCards"
         :key="movieCard.id"
         :movieCard="movieCard"
+        class="col-12 col-sm-4 py-3"
       >
       </movie-card>
       </div>
