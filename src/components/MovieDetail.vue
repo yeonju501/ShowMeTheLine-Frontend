@@ -59,7 +59,7 @@
             :key="id"
             :comment="content"
             :movie_pk="movie_pk"
-            @onParentDeleteComment="onParentDeleteComment"
+            @loadComments="loadComments"
         />
           
  
@@ -114,7 +114,6 @@ export default {
   },
   methods: {
     setRating(rating) {
-      // console.log(rating)
       this.myrating = rating * 2
     },
 
@@ -174,58 +173,25 @@ export default {
       
       const commentItem = {
         content: this.comment,
+        rank: this.myrating,
       }
       if (commentItem.content) {
         const movie_pk = this.movie_pk
         console.log(commentItem)
-        // const user = this.review.user
-        // console.log(user)
         axios({
           method: 'post',
           url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
           data: commentItem,
           headers: this.setToken(),
-        }).then((res)=>{
-          console.log(res.data)
+        }).then(()=>{
           this.loadComments()
-          // axios({
-          //   url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-          //   headers: this.setToken(),
-          //   method: 'GET',
-          // }).then((res)=>{
-          //     const temp = []
-          //     res.data.forEach((element)=>{
-          //       console.log(element)
-          //       temp.push(element)
-          //     })
-          //     this.comments = temp
-          //     // this.comments = _.sortBy(temp,
-          // }).catch((err)=>{
-          //   console.error(err)
-          // })
         }).catch((err)=>{
           console.error(err)
         })
-        this.mycomment = ''
+        this.comment = ''
       } else {
         alert("댓글을 입력하세요.")
       }
-    },
-
-    onParentDeleteComment: function() {
-      const movie_pk = this.movie_pk
-      axios({
-        url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
-        method: 'GET',
-      }).then((res)=>{
-          const temp = []
-          res.data.forEach((element)=>{
-            temp.push(element)
-          })
-          this.comments = temp
-      }).catch((err)=>{
-        console.error(err)
-      })
     },
 
   },

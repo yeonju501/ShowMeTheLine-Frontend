@@ -19,7 +19,7 @@
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
       <div class="col-1"><b><a href="" v-if="getName==currentName" @click="deleteComment">삭제</a></b></div>
       <div class="col-1"><b><a href="" v-if="getName==currentName" @click="updateComment">수정</a></b></div>
-        
+      <component v-bind:is="updateForm" :review="review" @sendUpdate="sendUpdate" :movie_pk="movie_pk"></component>
     </div>
     <hr style="background-color:white"> 
     
@@ -29,7 +29,7 @@
 <script>
 import axios from 'axios'
 import StarRating from 'vue-star-rating'
-// import CommentUpdate from '../components/CommentUpdate.vue'
+import CommentUpdate from '../components/CommentUpdate.vue'
 
 export default {
   components: {
@@ -41,12 +41,14 @@ export default {
     return {
       getName: '',
       currentName: '',
+      updateForm: '',
+      review:'',
     }
   },
 
   props: {
     comment: Object,
-    movie_pk: Number
+    movie_pk: Number,
   },
 
   methods: {
@@ -64,26 +66,44 @@ export default {
       const review_pk = this.comment.id
       axios({
         url: `http://127.0.0.1:8000/movies/${movie_pk}/review/${review_pk}` ,
-        method: 'DELETE'
+        method: 'delete',
+        headers: this.setToken(),
       }).then(()=>{
-        this.$emit('onParentDeleteComment')
+        this.$emit('loadComments')
       }).catch((err)=>{
         console.error(err)
       })
-    }
+    },
+    updateComment(event){
+      event.preventDefault()
+      this.updateForm=CommentUpdate
+      const movie_pk = this.movie_pk
+      const review_pk = this.comment.id
+      axios({
+        url: `http://127.0.0.1:8000/movies/${movie_pk}/review/${review_pk}` ,
+        method: 'get',
+        headers: this.setToken(),
+      }).then((res)=>{
+        this.review = res.data
+      }).catch((err)=>{
+        console.error(err)
+      })
+    },
+    sendUpdate(){
+      this.updateForm=''
+      this.$emit('loadComments')
+    },
     
     
   },
 
   computed: {
-    computed: {
     getComment() {
       return this.comment.content
     },
     getRating() {
-      return this.comment.rating / 2
+      return this.comment.rank / 2
     },
-  },
   },
 
   created: function() {

@@ -69,6 +69,7 @@ export default {
     
   },
   methods: {
+
     getMovieDetail() {
       // console.log(this.movie.title)
       // console.log('TQ',this.movie.title)
