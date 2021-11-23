@@ -14,14 +14,14 @@
       v-bind:star-size="10"
       @rating-selected="setRating">
     </star-rating>
-    <div class="row">
+    <div class=" row">
       <div class="col-2"><p>{{ comment.user.username }}</p></div>
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
       <div class="col-1"><b><a href="" v-if="getName==currentName" @click="deleteComment">삭제</a></b></div>
       <div class="col-1"><b><a href="" v-if="getName==currentName" @click="updateComment">수정</a></b></div>
       <component v-bind:is="updateForm" :review="review" @sendUpdate="sendUpdate" :movie_pk="movie_pk"></component>
     </div>
-    <hr style="background-color:white"> 
+    <!-- <hr style="background-color:white">  -->
     
   </span>
 </template>
@@ -121,5 +121,7 @@ export default {
 </script>
 
 <style>
-
+.bg-black {
+  background-color: black;
+}
 </style>

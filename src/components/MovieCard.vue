@@ -1,6 +1,6 @@
 <template>
 <div @click="getMovieDetail()" class="col-12 col-sm-4 py-3">
-  <div class="card h-100 m-2 text-black">
+  <div class="card  m-3 text-black">
     <div class="h-100">
       <img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster">
     </div>
@@ -14,10 +14,10 @@
       size="xl" 
       hide-header
       hide-footer
-      :header-bg-variant="secondary"
-      :body-bg-variant="dark"
+      :header-bg-variant="black"
+      :body-bg-variant="black"
       :body-text-variant="ligth"
-      :footer-bg-variant="secondary"
+      :footer-bg-variant="black"
       >
         <MovieDetail
           :movie_pk="this.movieCard.id"
@@ -38,6 +38,7 @@ export default {
   data: function(){
     return {
       movie_pk : this.movieCard.id,
+      black : 'black',
     }
   },
   props: {

@@ -1,7 +1,7 @@
 <template>
-<div class='text-light bg-black'> 
+<div class='text-light'> 
   <div >
-    <div class="row  rounded" :style="{ 
+    <div class="row rounded" :style="{ 
         backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0) 70%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 20%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
         backgroundSize: '700px 100%',
         backgroundPosition: 'right center',
@@ -10,17 +10,15 @@
         
         <div class="col">
           <div class="fw-bold mb-3">
-              <span class="fs-3">{{ title }}</span>
+              <span class="fs-2">{{ title }}</span>
               <span class="fs-7 ms-3">({{ release_date.slice(0, 4)}})</span>
               <span class="fs-7 ms-2">{{ duration }}분</span>
             </div>
 
-          <div class="fs-5 fw-bold pt-3 pb-2">명대사자리</div>
-          <p class="card-text ellipsis underline" id="ellipsis-overview">{{ line }}</p>
-
+          <p class="fs-4 fw-bold pt-3 pb-2 ellipsis underline">"{{ line }}"</p>
 
           <div class="fs-5 fw-bold pt-3 pb-2">줄거리</div>
-          <p class="card-text ellipsis underline" id="ellipsis-overview">{{ overview }}</p>
+          <p class="card-text ellipsis" id="ellipsis-overview">{{ overview }}</p>
 
           <div class="feature-box row">
             <span>감독: {{ director }}</span>
@@ -30,8 +28,9 @@
             <span>출연진: {{ actor }}</span>
           </div>
           <br>
+
           <form @submit="commentSubmit">
-          <div class="form-group">
+          <div class="form-group  ">
             <label for="star">별점</label>
             <star-rating
               id="star" 
@@ -46,25 +45,27 @@
               v-bind:star-size="30"
               @rating-selected="setRating">
             </star-rating>
-            <hr>
-            <label for="comment">리뷰</label>
-            <textarea class="form-control" id="comment" rows="2" v-model.trim="comment" @keypress.enter="commentSubmit"></textarea>
             </div>
+            <hr>
+
+            <div>
+            <label for="comment">리뷰</label>
+            <textarea class="form-control " id="comment" rows="2" v-model.trim="comment" @keypress.enter="commentSubmit"></textarea>
             <br>
             <button class="btn btn-dark">제출</button>
-          </form>
-          <hr>
-          <MovieComment 
-          v-for="(content, id) in comments"
-            :key="id"
-            :comment="content"
-            :movie_pk="movie_pk"
-            @loadComments="loadComments"
-        />
-          
+            </div>
+            </form>
+            <hr>
+            <MovieComment 
+            v-for="(content, id) in comments"
+              :key="id"
+              :comment="content"
+              :movie_pk="movie_pk"
+              @loadComments="loadComments"
+            />
+            
  
         </div> 
-
     </div>
   </div>
 </div>
@@ -144,6 +145,7 @@ export default {
       this.director = res.data.director
       this.title = res.data.title
       this.actor = res.data.actor
+      this.line = res.data.line
 
       }).catch((err)=>{
         console.error(err)
@@ -217,6 +219,9 @@ export default {
 
 
 <style scopeed>
+.bg-black {
+  background-color: black;
+}
 .ellipsis {
   width: 400px;
   text-overflow: ellipsis;
@@ -243,7 +248,7 @@ span.underline:hover {
 p.underline:hover {
   text-decoration: underline;
   /* font-weight: bold; */
-  color:#00cecb !important;
+  color:#f7fa66 !important;
 }
 .animate__animated {
     --animate-duration  : 1.2s;
