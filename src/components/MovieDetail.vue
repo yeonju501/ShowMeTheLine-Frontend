@@ -10,9 +10,16 @@
         
         <div class="col">
           <div class="fw-bold mb-3">
-              <span class="fs-2">{{ title }}</span>
-              <span class="fs-7 ms-3">({{ release_date.slice(0, 4)}})</span>
-              <span class="fs-7 ms-2">{{ duration }}분</span>
+              <span class="fs-1">{{ title }}</span>
+              
+              <span class="fs-5 ms-3">({{ release_date.slice(0, 4)}})</span>
+              <span class="fs-5 ms-2">{{ duration }}분</span>
+              <i id="heart" v-if="isLiking" @click="like" style="color:crimson; font-size:45px; margin-top:70px; margin-left:20px;" class="fas fa-heart"></i>
+              <i id="heart" v-else @click="like" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i>
+              
+              <!-- <font-awesome-icon :icon="['fas','heart']"/> -->
+              
+              
             </div>
 
           <p class="fs-4 fw-bold pt-3 pb-2 ellipsis underline">"{{ line }}"</p>
@@ -105,6 +112,7 @@ export default {
       myrating:0,
       pageNum: 0,
       pageSize: 5,
+      liking: '',
       
       
     }
@@ -114,6 +122,7 @@ export default {
      
   },
   methods: {
+    
     setRating(rating) {
       this.myrating = rating * 2
     },
@@ -170,6 +179,22 @@ export default {
     })
     },
 
+    like: function () {
+      const movie_pk = this.movie_pk
+      const item = {
+        myId: this.user.id,
+        movieId: this.movie.id,
+      }
+      axios({
+        method: 'post',
+        url: `http://127.0.0.1:8000/movies/${movie_pk}/like/`,
+        data: item,
+        headers: this.setToken(),
+      }).then(()=>{
+        this.getMyName()
+      })
+    },
+
     commentSubmit(event) {
       event.preventDefault()
       
@@ -198,6 +223,9 @@ export default {
 
   },
   computed: {
+    isLiking: function () {
+      return this.liking
+    },
     getImage: function() {
       return 'http://image.tmdb.org/t/p/w500'+this.poster_path
     },
@@ -219,6 +247,16 @@ export default {
 
 
 <style scopeed>
+#heart {
+  display: inline;
+  margin: 0px auto;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+#heart:hover {
+  color: crimson;
+}
 .bg-black {
   background-color: black;
 }
