@@ -83,9 +83,9 @@ export default {
 }
 .bg-main::after {
   width: 100%;
-  height: 1000px;
+  height: 1200px;
   content: "";
-  background-image: url('https://mblogthumb-phinf.pstatic.net/MjAxOTA4MTNfMyAg/MDAxNTY1NjIyNzg5NzA3.GJapz2neGaqR5EPF5T8Q7dz9eR4Nm5xlSeopExX4QDAg.3_nqIoXMxEX2_rW_8AEXkBHDXKj1HWx8lkQlL_pWI3Qg.JPEG.asforlove/inCollage_20190812_235741800.jpg?type=w800');
+  background-image: url('https://media.discordapp.net/attachments/867763766396321846/912878610115858432/IMG_9812.jpg?width=833&height=590');
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
