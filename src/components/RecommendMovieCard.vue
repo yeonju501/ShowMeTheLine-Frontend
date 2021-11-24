@@ -12,20 +12,15 @@
           
           <v-fade-transition>
             <v-overlay
+              class="v-card--reveal"
               v-if="hover"
               absolute
               color="rgb(0, 0, 0, 1)"
             >
-              <div class="m-1 font-center h4" > 
-                <v-card 
-                class="mx-auto"
-                color="#323232"
-                dark
-                
-                >
-                <v-card-text class=" font-weight-bold" style="line-height: 1.5; font-size:0.89em">{{line}}</v-card-text>
-                </v-card>
-              </div>
+              <p class="fw-bold m-3 font-center h3 ">{{line}}</p>
+              <!-- <p class="fw-bold m-3 font-center" style="line-height:1.1; font-size:2em">{{line}}</p> -->
+               
+              
             </v-overlay>
           </v-fade-transition>
           <!-- <p class="content-font" style="font-weight: bold;">{{ movie.title }}</p> -->
@@ -128,6 +123,14 @@ export default {
 </script>
 
 <style>
+.v-card--reveal {
+align-items: center;
+bottom: 0;
+justify-content: center;
+opacity: .8;
+position: absolute;
+width: 100%;
+}
 .bgblack {
   background-color: rgba(20, 20, 20, 0);
 }

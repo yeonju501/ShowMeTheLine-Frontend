@@ -3,7 +3,7 @@
   <label :for="movieCard.id">
   <v-hover style="margin-bottom:10px">
       <template v-slot:default="{ hover }">
-  <v-card class="card  m-3 text-black">
+  <v-card class="card  m-3 text-black" @click="selectMovie">
       <v-img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster"></v-img>
     <!-- <div class="card-body ">
       <h5 class="card-title fw-bolder" >
@@ -26,7 +26,7 @@
     </template>
     </v-hover>
     </label>
-    <input type="checkbox" :id="movieCard.id" @click="selectMovie">
+    <!-- <input type="checkbox"  :id="movieCard.id" @click="selectMovie"> -->
   </div>
 
 </template>
