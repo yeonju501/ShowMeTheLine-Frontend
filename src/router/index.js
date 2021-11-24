@@ -28,7 +28,7 @@ const routes = [
   },
   {
     path: '/accounts/signup',
-    name: 'Singup',
+    name: 'Signup',
     component: Signup,
   },
   {
@@ -43,9 +43,10 @@ const routes = [
     props: true
   },
   {
-    path: '/profile',
+    path: '/accounts/:user',
     name: 'Profile',
     component: Profile,
+    props: true
   },
 ]
 

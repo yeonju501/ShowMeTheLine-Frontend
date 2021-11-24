@@ -33,7 +33,6 @@
 
 <script>
 import axios from 'axios'
-// import axios from 'axios'
 
 export default {
   name: 'Login',
@@ -53,7 +52,11 @@ export default {
         data: this.credentials,
       })
        .then(res => {
-        localStorage.setItem('jwt', res.data.token) 
+        localStorage.setItem('jwt', res.data.token)
+        this.$store
+          .dispatch("login", {
+            username: this.username,
+          })
         this.$emit('Login')
         this.$router.push({ name: 'Home' })        
        })

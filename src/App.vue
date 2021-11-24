@@ -7,24 +7,22 @@
         <b-navbar-nav v-if="isLogin">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <router-link class="nav-link" to="/">
+              <router-link class="nav-link" :to="{name:'Home'}">
                 <b>Home</b>
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/movies">
+              <router-link class="nav-link" :to="{name:'Movies'}">
                 <b>영화</b>
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="liked-movies">
-
+              <router-link class="nav-link" :to="{name:'LikedMovies'}">
                 <b>내가 찜한 콘텐츠</b> 
               </router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="profile">
-
+              <router-link class="nav-link" :to="{ name: 'Profile', params: { user: getName}}">
                 <b>프로필</b> 
               </router-link>
             </li>
@@ -43,10 +41,10 @@
           <b-navbar-nav v-else>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <router-link class="nav-link" to="/accounts/signup">회원가입</router-link> 
+                <router-link class="nav-link" :to="{ name:'Signup'}">회원가입</router-link> 
               </li>
               <li class="nav-item">
-                <router-link class="nav-link" to="/accounts/login">로그인</router-link>
+                <router-link class="nav-link" :to="{name:'Login'}">로그인</router-link>
               </li>
             </ul>
           </b-navbar-nav>
@@ -62,15 +60,32 @@
 
 
 <script>
+import axios from 'axios'
 export default {
   name: 'App',
   data: function() {
     return {
       isLogin: false,
+      userName: '',
     }
   },
   methods: {
-
+    setToken: function () {
+    const token = localStorage.getItem('jwt')
+    const config = {
+      Authorization: `JWT ${token}`
+    }
+    return config
+    },
+    getUser: function(){
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/accounts/userinfo/`,
+        headers: this.setToken(),
+      }).then((res) => {
+        this.userName = res.data.username 
+      })
+    },
     logout: function() {
       this.isLogin = false
       localStorage.removeItem('jwt')
@@ -78,11 +93,18 @@ export default {
     }
 
   },
+  computed:{
+    getName: function () {
+      return this.userName
+    },
+  },
   created: function () {
     const token = localStorage.getItem('jwt')
 
     if (token) {
       this.isLogin = true
+      this.getUser()
+      
     }
   }
 }

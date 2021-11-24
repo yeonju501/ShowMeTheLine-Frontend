@@ -37,6 +37,7 @@
       >
         <MovieDetail
           :movie_pk="this.movieCard.id"
+          @updateLikedMovies="updateLikedMovies"
         />
       </b-modal>
   </div>
@@ -67,6 +68,9 @@ export default {
       // console.log(this.movie)
       // this.$router.push({name: 'MovieDetail', params: {movie_pk: this.movie.movie_id}})
     },
+    updateLikedMovies: function(){
+      this.$emit('updateLikedMovies')
+    }
   },
   computed:{
     getImage: function() {

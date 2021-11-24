@@ -14,8 +14,8 @@
               
               <span class="fs-5 ms-3">({{ release_date.slice(0, 4)}})</span>
               <span class="fs-5 ms-2">{{ duration }}분</span>
-              <i id="heart" v-if="isLiking" @click="like" style="color:crimson; font-size:45px; margin-top:70px; margin-left:20px;" class="fas fa-heart"></i>
-              <i id="heart" v-else @click="like" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i>
+              <a href=""  v-show="isLiking" @click="like"><i id="heart" style="color:crimson; font-size:45px; margin-top:70px; margin-left:20px;" class="fas fa-heart"></i></a>
+              <a href=""  v-show="!isLiking" @click="like"><i id="heart" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i></a>
               
               <!-- <font-awesome-icon :icon="['fas','heart']"/> -->
               
@@ -112,7 +112,10 @@ export default {
       myrating:0,
       pageNum: 0,
       pageSize: 5,
-      liking: '',
+      user_pk : null,
+      username:'',
+      user_likemovies: [],
+      liking: false,
       
       
     }
@@ -143,7 +146,6 @@ export default {
         url: `http://127.0.0.1:8000/movies/${movie_pk}/`,
         headers: this.setToken(),
       }).then((res)=>{
-      console.log(res.data)  
       this.id = res.data.id
       this.poster_path = res.data.poster_path
       this.backdrop_path = res.data.backdrop_path
@@ -178,20 +180,34 @@ export default {
       console.error(err)
     })
     },
+    getUser: function(){
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/accounts/userinfo/`,
+        headers: this.setToken(),
+      }).then((res) => {
+        this.user_pk = res.data.id
+        this.username = res.data.username
+        this.user_likemovies = res.data.like_movies
+        console.log(this.user_likemovies)
+        if (this.user_likemovies.includes(this.movie_pk)){
+          this.liking = true
+        } else {
+          this.liking = false
+        }   
+      })
+    },
 
-    like: function () {
+    like: function (event) {
+      event.preventDefault()
       const movie_pk = this.movie_pk
-      const item = {
-        myId: this.user.id,
-        movieId: this.movie.id,
-      }
       axios({
         method: 'post',
-        url: `http://127.0.0.1:8000/movies/${movie_pk}/like/`,
-        data: item,
+        url: `http://127.0.0.1:8000/movies/${movie_pk}/likes/`,
         headers: this.setToken(),
-      }).then(()=>{
-        this.getMyName()
+      }).then(() => {
+        this.getUser()
+        this.$emit('updateLikedMovies')
       })
     },
 
@@ -212,6 +228,7 @@ export default {
           headers: this.setToken(),
         }).then(()=>{
           this.loadComments()
+
         }).catch((err)=>{
           console.error(err)
         })
@@ -226,6 +243,7 @@ export default {
     isLiking: function () {
       return this.liking
     },
+    
     getImage: function() {
       return 'http://image.tmdb.org/t/p/w500'+this.poster_path
     },
@@ -236,6 +254,7 @@ export default {
     if (localStorage.getItem('jwt')){
       this.loadDetails()
       this.loadComments()
+      this.getUser()
     } else {
       this.$router.push({name:'Login'})
     }
