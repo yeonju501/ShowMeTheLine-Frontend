@@ -67,7 +67,7 @@ export default {
 <style scoped>
 .bg-main {
   width: 100%;
-  height: 1000px;
+  height: 700px;
   position: relative;
   margin-bottom: 250px;
   z-index: 1;
@@ -76,21 +76,21 @@ export default {
 }
 .bg-main::after {
   width: 100%;
-  height: 1000px;
+  height: 800px;
   content: "";
-  background-image: url('https://mblogthumb-phinf.pstatic.net/MjAxOTA4MTNfMyAg/MDAxNTY1NjIyNzg5NzA3.GJapz2neGaqR5EPF5T8Q7dz9eR4Nm5xlSeopExX4QDAg.3_nqIoXMxEX2_rW_8AEXkBHDXKj1HWx8lkQlL_pWI3Qg.JPEG.asforlove/inCollage_20190812_235741800.jpg?type=w800');
+  background-image: url('https://media.discordapp.net/attachments/867763766396321846/912876770401861642/4.jpg?width=1213&height=580');
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
-  top: 0;
+  top: 1;
   left: 0;
-  z-index: -1;
+  z-index: -2;
   opacity: 0.5;
 }
 
 .logindiv {
   position: absolute;
-  top: 50%;
+  top: 64%;
   left: 50%;
   transform: translate(-50% ,-65%);
   border-radius: 20px;
