@@ -4,11 +4,11 @@
       <template v-slot:default="{ hover }">
   <v-card class="card  m-3 text-black">
       <v-img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster"></v-img>
-    <div class="card-body ">
+    <!-- <div class="card-body ">
       <h5 class="card-title fw-bolder" >
         {{ movieCard.title }}
       </h5>
-    </div>
+    </div> -->
     <v-fade-transition>
         <v-overlay
         class="v-card--reveal"

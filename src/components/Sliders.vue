@@ -7,7 +7,7 @@
         v-for="(movie, idx) in movies"
         :key="idx"
         :movie="movie"
-        class="col-lg-2 col-md-4 col-sm-6 col-xs-12"
+        class="col-lg-3 col-md-4 col-sm-6 col-xs-12"
         
         
       />

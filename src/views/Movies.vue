@@ -17,7 +17,7 @@
         v-for="movieCard in paginatedData"
         :key="movieCard.id"
         :movieCard="movieCard"
-        class="col-12 col-sm-4 py-3"
+        class="col-md-3 col-sm-6 py-3"
       >
       </movie-card>
       </div>
@@ -51,7 +51,7 @@ export default {
       movieCards: null,
       movies: [],
       pageNum: 0,
-      pageSize: 9,
+      pageSize: 12,
       search: '',
     }
   },

@@ -8,7 +8,7 @@
           :key="movieCard.id"
           :movieCard="movieCard"
           @updateLikedMovies="getLikedMovies"
-          class="col-12 col-sm-4 py-3">
+          class="col-md-3 col-sm-6 py-3">
         </movie-card>
       </div>
     </div>

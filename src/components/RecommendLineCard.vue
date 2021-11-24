@@ -1,14 +1,15 @@
 <template>
-<div class="container">
+<div>
+  <label :for="movieCard.id">
   <v-hover style="margin-bottom:10px">
       <template v-slot:default="{ hover }">
   <v-card class="card  m-3 text-black">
       <v-img style='object-fit: cover' class="img-fluid" :src="'https://image.tmdb.org/t/p/w300/' + movieCard.poster_path" alt="movie_poster"></v-img>
-    <div class="card-body ">
+    <!-- <div class="card-body ">
       <h5 class="card-title fw-bolder" >
         {{ movieCard.title }}
       </h5>
-    </div>
+    </div> -->
     <v-fade-transition>
         <v-overlay
         class="v-card--reveal"
@@ -24,22 +25,26 @@
     </v-card> 
     </template>
     </v-hover>
+    </label>
+    <input type="checkbox" :id="movieCard.id" @click="selectMovie">
   </div>
 
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name: 'RecommendLineCard',
   data () {
     return {
       movies: [],
-      movieCards: null,
     }
   },
-  
-  methos:{
+  props:{
+    movieCard:Object,
+    cardNum:Number,
+  },
+  methods:{
     setToken: function () {
     const token = localStorage.getItem('jwt')
     const config = {
@@ -47,23 +52,27 @@ export default {
     }
     return config
   },
+    selectMovie: function (){
+      console.log(this.movieCard.id)
+      this.$emit('selectMovie', this.movieCard.id, this.cardNum)
+    }
 
-  loadRecommendMovieCards: function(){
-    axios({
-      method: 'get',
-      url: 'http://127.0.0.1:8000/movies/recommend/line/',
-      headers: this.setToken(),
+  // loadRecommendMovieCards: function(){
+  //   axios({
+  //     method: 'get',
+  //     url: 'http://127.0.0.1:8000/movies/recommend/line/',
+  //     headers: this.setToken(),
 
-    })
-      .then((res) => {
-        const temp = []
-        res.data.forEach(function(element){
-          temp.push(element)
-        })
-        this.movies = temp
-      })
-      .catch(err => console.log(err))
-  },
+  //   })
+  //     .then((res) => {
+  //       const temp = []
+  //       res.data.forEach(function(element){
+  //         temp.push(element)
+  //       })
+  //       this.movies = temp
+  //     })
+  //     .catch(err => console.log(err))
+  // },
   }, 
   computed: {
     getImage: function() {
@@ -74,7 +83,7 @@ export default {
 
   created: function() {
   if (localStorage.getItem('jwt')){
-    this.loadRecommendMovieCards()
+    // this.loadRecommendMovieCards()
   } else {
     this.$router.push({name:'Login'})
   }

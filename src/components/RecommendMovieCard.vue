@@ -1,13 +1,13 @@
 <template>
   <swiper-slide>
     <div class="container">
-    <v-hover style="margin-bottom:10px">
+    <v-hover >
       <template v-slot:default="{ hover }">
         <v-card @click="getMovieDetail()">
-          <v-img style="overflow-y: hidden; height:500px;" :src="getImage"></v-img>
-          <div class="card-body">
+          <v-img style="overflow-y: hidden; height:450px;" :src="getImage"></v-img>
+          <div class="card-body" style="padding:0rem">
           <!-- <h class="card-title " v-for="(item,idx) in getTitle" :key="idx"><b>{{ item }}</b></h> -->
-          <h5 class="card-title"><b>{{ title }}</b></h5>
+          <!-- <h5 class="card-title"><b>{{ title }}</b></h5> -->
           </div>
           
           <v-fade-transition>
