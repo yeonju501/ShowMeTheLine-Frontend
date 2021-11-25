@@ -8,14 +8,18 @@
       <i id="heart" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i>
     </a>
     <hr>
-    <!-- <p>{{followers}}</p>
-    <p>{{followings}}</p> -->
-    <!-- <p>{{reviews}}</p> -->
-
-    <!-- 팔로워 -->
-    <!-- <h2 class="left">Follower</h2> -->
-    <!-- {{followers}} -->
-
+    <h2>팔로워</h2>
+    <profile-follow
+      v-for="(follower, idx) in followers"
+      :key="idx"
+      :follower="follower"
+      ></profile-follow>
+      <br>
+    <h2>팔로잉</h2>
+    <profile-follow
+      v-for="(follower, idx) in followings"
+      :key="idx"
+      :follower="follower"></profile-follow> 
     
 
     <!-- 마이리뷰 -->
@@ -36,14 +40,16 @@
 <script>
 import axios from 'axios'
 import ProfileReview from '../components/ProfileReview'
+import ProfileFollow from '../components/ProfileFollow.vue'
 
 export default {
   name:'Profile',
   components: {
-    ProfileReview
+    ProfileReview,
+    ProfileFollow,
   },
   data(){
-    return{
+    return {
       profileId: null,
       profileName: '',
       following: null,
