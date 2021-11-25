@@ -28,6 +28,10 @@
           <p class="card-text ellipsis" id="ellipsis-overview">{{ overview }}</p>
 
           <div class="feature-box row">
+            <span>평점: {{ vote_average }}</span>
+          </div>
+
+          <div class="feature-box row">
             <span>감독: {{ director }}</span>
           </div>
           
