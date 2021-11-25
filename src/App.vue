@@ -9,13 +9,13 @@
             <b-nav-item  :to="{name:'LikedMovies'}"> 내가 찜한 영화 </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav style="margin-right:auto;" v-else>
-            <b-nav-item style="margin-left:10px;" :to="{name:'Home'}"> Home </b-nav-item>
+            <b-nav-item id="logo" style="margin-left:10px;" :to="{name:'Home'}"> ShowMeTheLine </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
         <b-navbar-nav style="margin-left:auto; padding-right:10px;" v-if="isLogin">
             <b-nav-item  :to="{ name: 'Profile', params: { user: getName}}"> 프로필 </b-nav-item>
-            <b-nav-item  @click.native="logout" :to="{name:'Home'}"> 로그아웃 </b-nav-item>
+            <b-nav-item  @click="logout" to="#"> 로그아웃 </b-nav-item>
         </b-navbar-nav>
         <b-navbar-nav style="margin-left:auto; padding-right:10px;" v-else>
           <b-nav-item :to="{ name:'Signup'}"> 회원가입 </b-nav-item>
@@ -57,6 +57,7 @@ export default {
       })
     },
     logout: function() {
+      console.log('bb')
       this.isLogin = false
       localStorage.removeItem('jwt')
       this.$router.push({ name: 'Login' })
@@ -69,13 +70,19 @@ export default {
     },
   },
   created: function () {
-    const token = localStorage.getItem('jwt')
-
-    if (token) {
+    if (localStorage.getItem('jwt')){
       this.isLogin = true
       this.getUser()
-      
+    } else {
+      this.$router.push({name:'Login'})
     }
+    // const token = localStorage.getItem('jwt')
+
+    // if (token) {
+    //   this.isLogin = true
+    //   this.getUser()
+      
+    // }
   }
 }
 </script>
