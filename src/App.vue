@@ -4,7 +4,7 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav style="margin-right:auto;" v-if="isLogin">
-            <b-nav-item style="margin-left:10px;" :to="{name:'Home'}"> ShowMeTheLine </b-nav-item>
+            <b-nav-item id="logo" style="margin-left:10px;" :to="{name:'Home'}"> ShowMeTheLine </b-nav-item>
             <b-nav-item  :to="{name:'Movies'}"> 영화 </b-nav-item>
             <b-nav-item  :to="{name:'LikedMovies'}"> 내가 찜한 영화 </b-nav-item>
         </b-navbar-nav>
@@ -101,7 +101,18 @@ export default {
      font-weight: normal;
      font-style: normal;
 }
-
+#logo {
+  margin-top: 1px;
+  letter-spacing :-1.2px;
+  margin-left: 10px;
+  font-family: moon;
+  color: #bd2020;
+  text-decoration-color: #ff0000;
+  text-emphasis-color: red;
+  font-size: 1.1vw;
+  line-height: 1.2vw;
+  text-shadow: 0 0 1vw #ff0000;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif, ;
@@ -131,4 +142,6 @@ export default {
 .navbar-dark .navbar-nav .nav-link{
   color: white !important;
 }
+
+
 </style>
