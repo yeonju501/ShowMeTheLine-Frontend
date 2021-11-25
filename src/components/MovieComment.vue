@@ -6,19 +6,19 @@
       v-bind:rating="getRating"
       v-bind:show-rating="false"
       v-bind:read-only="true"
-      inactive-color="#000"
-      active-color="#ff0"
-      border-color="#ff0"
-      v-bind:padding="8"
-      v-bind:border-width="2"
-      v-bind:star-size="10"
+      inactive-color="black"
+      active-color="#ffd400"
+      border-color="#ffd400"
+      v-bind:padding="-2"
+      v-bind:border-width="0"
+      v-bind:star-size="18"
       @rating-selected="setRating">
     </star-rating>
-    <div class=" row">
+    <div class=" row ">
       <div class="col-2"><p>{{ comment.user.username }}</p></div>
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
-      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="deleteComment">삭제</a></b></div>
-      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="updateComment">수정</a></b></div>
+      <div class="col-1"><a href="" v-if="getName==currentName" @click="deleteComment"><i class="fa fa-trash icon-color"  aria-hidden="true"></i></a></div>
+      <div class="col-1"><a href="" v-if="getName==currentName" @click="updateComment"><i class="fa fa-pen icon-color"  aria-hidden="true"></i></a></div>
       <component v-bind:is="updateForm" :review="review" @sendUpdate="sendUpdate" :movie_pk="movie_pk"></component>
     </div>
     <!-- <hr style="background-color:white">  -->
@@ -123,5 +123,11 @@ export default {
 <style>
 .bg-black {
   background-color: black;
+}
+.icon-color {
+  color: white;
+}
+.go-right {
+  margin-left: 5px;
 }
 </style>

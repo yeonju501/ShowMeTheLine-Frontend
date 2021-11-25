@@ -1,7 +1,7 @@
 <template>
   <swiper-slide>
     <div class="container">
-    <v-hover >
+    <v-hover>
       <template v-slot:default="{ hover }">
         <v-card @click="getMovieDetail()">
           <v-img style="overflow-y: hidden; height:450px;" :src="getImage"></v-img>
@@ -17,8 +17,8 @@
               absolute
               color="rgb(0, 0, 0, 1)"
             >
-              <p class="fw-bold m-3 font-center h3 ">{{line}}</p>
-              <!-- <p class="fw-bold m-3 font-center" style="line-height:1.1; font-size:2em">{{line}}</p> -->
+              <!-- <p class="fw-bold m-2 font-center h5  ">{{line}}</p> -->
+              <p class="fw-bold m-3 " style="line-height:1.4; font-size:1.7em">{{line}}</p>
                
               
             </v-overlay>
@@ -27,7 +27,8 @@
         </v-card>  
       </template>
     </v-hover>
-      
+
+      <!-- <Modal /> -->
       <b-modal 
       ref="detail" 
       size="xl" 
@@ -44,41 +45,6 @@
         />
       </b-modal>
 
-      <!-- <div id="app">
-    <v-app v-app id="inspire">
-    <v-row justify="center">
-      <v-dialog
-        v-model="dialog"
-        width="600px"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Open Dialog
-          </v-btn>
-        </template>
-
-        <v-card>
-          <v-card-title>
-            <span class="text-h5"></span>
-          </v-card-title>
-          <v-card-text>
-            <MovieDetail
-          :movie_pk="this.movie.id"
-        />
-          </v-card-text>
-
-        </v-card>
-      </v-dialog>
-    </v-row>
-  </v-app>
-</div> -->
-
-
 
 
     </div>
@@ -88,12 +54,14 @@
 
 <script>
 import MovieDetail from '../components/MovieDetail.vue'
+// import Modal from '../components/Modal.vue'
 export default {
   props: {
     movie:Object
   },
   components: {
-    MovieDetail
+    MovieDetail,
+    // Modal,
   },
   data(){
     return {
@@ -123,6 +91,27 @@ export default {
 </script>
 
 <style>
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ridi-font{
+  font-family: 'RIDIBatang';
+}
+
+.go-font{
+  font-family:  'GowunDodum-Regular';
+}
+
 .v-card--reveal {
 align-items: center;
 bottom: 0;

@@ -18,7 +18,7 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" :to="{name:'LikedMovies'}">
-                <b>내가 찜한 콘텐츠</b> 
+                <b>내가 찜한 영화</b> 
               </router-link>
             </li>
             <li class="nav-item">
@@ -34,7 +34,7 @@
           <b-navbar-nav v-if="isLogin">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <router-link class="nav-link" @click.native="logout" to="#">로그아웃</router-link>
+                <router-link class="nav-link" @click.native="logout" to="#"><b>로그아웃</b></router-link>
               </li>
             </ul>
           </b-navbar-nav>
@@ -111,10 +111,30 @@ export default {
 </script>
 
 <style>
-
 @font-face {
     font-family: 'GowunDodum-Regular';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+     font-family: 'S-CoreDream-3Light';
+     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+}
+
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -128,7 +148,7 @@ export default {
 }
 
 * {
-  font-family: 'GowunDodum-Regular';
+  font-family:'GowunDodum-Regular' ;
 }
 #nav {
   padding: 30px;

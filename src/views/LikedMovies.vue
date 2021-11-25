@@ -1,6 +1,7 @@
 <template>
   <div>
-  <h1>내가 찜했다고!!!!!!!!!!무애애ㅐㅇ애!!!!!!!!!!</h1>
+  <h1>내가 찜한 영화</h1>
+  <hr>
     <div class="container">
       <div class="row">
         <movie-card

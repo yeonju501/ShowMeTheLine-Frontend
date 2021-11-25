@@ -1,16 +1,22 @@
 <template>
-  <div class="container">
-     <div class="row">
-      <form @submit="searchMovie" class="form-inline ml-auto mr-2">
-        <input class="form-control mr-sm-2" v-model="search" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+<div>
+  
+      <div class="container">
+      <form @submit="searchMovie">
+        <div class="row align-items-center">
+         <!-- class="form-inline ml-auto mr-2" -->
+        <div class="col"></div>
+        <!-- <div class="ml-5 col-1"><i class="fas fa-search"></i></div> -->
+        <div class="px-3 col-4"><input class="form-control mr-sm-2" v-model="search" type="text" placeholder="영화를 검색하세요" aria-label="Search"></div>
+        <div class="col-1"><button class="btn-1"  type="submit">SEARCH</button></div>
+        <div class="col-1"><button class="btn-1"  onClick="history.go(0)">RESET</button></div>
+        <!-- <div><button class="btn btn-outline-light ml-auto mr-4" onClick="history.go(0)">새로고침</button></div> -->
+        </div>
+       
       </form>
-      <form>
-        <button class="btn btn-outline-light ml-auto mr-4" onClick="history.go(0)">새로고침</button>
-      </form>
-    </div>  
 
-    <div>
+    
+
     <!-- <div class="container"> -->
       <div class="row">
       <movie-card
@@ -24,15 +30,15 @@
     </div>
 
     <div class="ml-4 btn-cover">
-      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn">
+      <button :disabled="pageNum === 0" @click="prevPage" class="page-btn btn-2">
         이전
       </button>
-      <span class="page-count"> {{ pageNum + 1 }} / {{ pageCount }} </span>
-      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn">
+      <span class="page-count"> <b>&nbsp;&nbsp; {{ pageNum + 1 }} / {{ pageCount }} &nbsp;&nbsp;</b></span>
+      <button :disabled="pageNum >= pageCount - 1" @click="nextPage" class="page-btn btn-2">
         다음
       </button>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -139,3 +145,26 @@ export default {
 
 
 </script>
+
+<style>
+.btn-1 {
+  width:80px;
+  height: 44px;
+  border-radius: 3px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: rgb(220, 206, 206);
+}
+.btn-2 {
+  margin-bottom: 20px;
+  width:50px;
+  height: 30px;
+  border-radius: 23px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  background: rgb(220, 206, 206);
+}
+  
+</style>

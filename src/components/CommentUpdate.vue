@@ -14,9 +14,9 @@
       @rating-selected="setRating">
     </star-rating>
       <div class="form-group">
-        <textarea class="form-control" id="content" rows="10" v-model="review.content"></textarea>
+        <textarea class="form-control mt-4" id="content" rows="5" v-model="review.content"></textarea>
       </div>
-      <button class="btn btn-primary">Submit</button>
+      <button class="btn">수정</button>
     </form>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
-<div class='text-light'> 
+<div class='text-light Pretendard-Regular'> 
   <div >
     <div class="row rounded" :style="{ 
         backgroundImage: `linear-gradient(to right, #141414, rgba(20, 20, 20, 0.5) 5%), linear-gradient(to left, #141414, rgba(20, 20, 20, 0) 10%), url('http://image.tmdb.org/t/p/w500${backdrop_path}')`,
         backgroundSize: '700px 100%',
         backgroundPosition: 'right center',
         backgroundRepeat: 'no-repeat',
-        height: '1000px'}">
+        height: '1150px'}">
         
         <div class="col">
           <div class="fw-bold mb-3">
@@ -34,33 +34,31 @@
           <div class="feature-box row">
             <span>출연진: {{ actor }}</span>
           </div>
-          <br>
+          <hr>
+          
 
+          <span class="fs-5 fw-bold">리뷰와 별점을 남겨주세요!</span>
           <form @submit="commentSubmit">
-          <div class="form-group  ">
-            <label for="star">별점</label>
+          <div class="form-group">
+            <label for="star"></label>
             <star-rating
               id="star" 
               v-bind:increment="0.5"
               v-bind:max-rating="5"
               v-bind:show-rating="false"
-              inactive-color="#000"
-              active-color="#ff0"
-              border-color="#ff0"
-              v-bind:padding="8"
-              v-bind:border-width="2"
-              v-bind:star-size="30"
+              inactive-color="white"
+              active-color="#ffd400"
+              border-color="#ffd400"
+              v-bind:padding="7"
+              v-bind:border-width="4"
+              v-bind:star-size="15"
               @rating-selected="setRating">
             </star-rating>
             </div>
-            <hr>
 
-            <div>
-            <label for="comment">리뷰</label>
+            <label for="comment"></label>
             <textarea class="form-control " id="comment" rows="2" v-model.trim="comment" @keypress.enter="commentSubmit"></textarea>
-            <br>
-            <button class="btn btn-dark">제출</button>
-            </div>
+            <button class="btn"><b>등록</b></button>
             </form>
             <hr>
             <MovieComment 
@@ -70,8 +68,6 @@
               :movie_pk="movie_pk"
               @loadComments="loadComments"
             />
-            
- 
         </div> 
     </div>
   </div>
@@ -266,7 +262,13 @@ export default {
 
 
 <style scopeed>
+
+.form-group{
+  margin-top: -13px;
+}
+
 #heart {
+  color: crimson;
   display: inline;
   margin: 0px auto;
   cursor: pointer;
@@ -277,7 +279,7 @@ export default {
   color: crimson;
 }
 .bg-black {
-  background-color: black;
+  background-color: black; 
 }
 .ellipsis {
   width: 400px;
