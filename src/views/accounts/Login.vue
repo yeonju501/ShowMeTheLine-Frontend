@@ -58,7 +58,7 @@ export default {
           .dispatch("login", {
             username: this.username,
           })
-        this.$emit('Login')
+        this.$emit('login')
         this.$router.push({ name: 'Home' })        
        })
        .catch(err => {
