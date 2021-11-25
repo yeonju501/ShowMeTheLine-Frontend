@@ -45,20 +45,7 @@
         step="4"
         
       >
-        
       </v-stepper-step>
-
-      <!-- <v-divider></v-divider>
-
-       <v-stepper-step
-        :complete="e1 > 5"
-        step="⏳"
-        
-      >
-        
-      </v-stepper-step> -->
-
-
       <v-divider></v-divider>
 
       <v-stepper-step 
@@ -114,18 +101,7 @@
       >
       </recommend-line-card>
         </v-card>
-      <!-- 
-        <v-btn
-        @click="e1 = 0">
-          다시하기
-        </v-btn> -->
 
-        <!-- <v-btn
-          color="dark"
-          @click="e1 = 2"
-        >
-          NEXT
-        </v-btn> -->
 
         
       </v-stepper-content>
@@ -147,18 +123,7 @@
       >
       </recommend-line-card>
         </v-card>
-
-        <!-- <v-btn
-        @click="e1 = 1">
-          PREVIEW
-        </v-btn>
-
-        <v-btn
-          color="dark"
-          @click="e1 = 3"
-        >
-          NEXT
-        </v-btn> -->
+        
       </v-stepper-content>
 
       <!-- 3 -->
@@ -179,17 +144,7 @@
       </recommend-line-card>
         </v-card>
 
-        <!-- <v-btn
-        @click="e1 = 2">
-          PREVIEW
-        </v-btn>
-
-        <v-btn
-          color="dark"
-          @click="e1 = 4"
-        >
-          NEXT
-        </v-btn> -->
+       
 
       </v-stepper-content>
 
@@ -211,65 +166,17 @@
       </recommend-line-card>
         </v-card>
 
-        <!-- <v-btn
-        @click="e1 = 3">
-          PREVIEW
-        </v-btn> -->
-
        
-        <!-- <v-btn
-          class="btn"
-          @click="e1 = 5"
-          x-large
-          
-        >
-          <b>Show me the Movie !</b>
-        </v-btn> -->
  
       </v-stepper-content>
 
-      <!-- 5 -->
-      
-      <!-- <v-stepper-content step="5" >
-        <v-card
-          
-          color="grey lighten-1"
-          class="row"
-        >
-        <recommend-line-card
-        v-for="movieCard in movieCards4"
-        :key="movieCard.id"
-        :movieCard="movieCard"
-        class="col-md-3 col-sm-6 py-3"
-        @selectMovie="selectMovie"
-        :cardNum="4"
-      >
-      </recommend-line-card> 
-        </v-card>
-
-        <v-btn
-        @click="e1 = 3">
-          PREVIEW
-        </v-btn>
-
-       
-        <v-btn
-          class="btn"
-          @click="e1 = 6"
-          x-large
-          
-        >
-          <b>Show me the movie!</b>
-        </v-btn>
- 
-      </v-stepper-content> -->
 
       <!-- 6 결과화면 -->
       <v-stepper-content step="5" class="">
         <v-card
           class="row card-bg"
         >
-        <h1 class="g-font card-bg"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요   </b> </h1>
+        <h1 class="g-font card-bg" style="margin-bottom:0; padding-top:10px;"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요   </b> </h1>
         <movie-card
         v-for="movieCard in result"
         :key="movieCard.id"
@@ -279,17 +186,7 @@
       </movie-card>
         </v-card>
 
-       <!-- <v-btn
-        @click="e1 = 4">
-          PREVIEW
-        </v-btn> -->
-
-        <!-- <v-btn
-          color="dark"
-          @click="e1 = 0"
-        >
-          RESET
-        </v-btn> -->
+      
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>

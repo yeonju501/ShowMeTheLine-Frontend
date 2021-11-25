@@ -82,7 +82,6 @@
 
 <script>
 import axios from 'axios'
-// import jwt_decode from 'jwt-decode'
 import MovieComment from '../components/MovieComment.vue'
 import StarRating from 'vue-star-rating'
 
@@ -290,26 +289,11 @@ export default {
 .card {
   background-color: inherit;
 }
-.additional-info-card {
-  /* border-radius: .3rem; */
-  padding-bottom: 30px;
-  margin-bottom: 50px;
-}
-.feature-box {
-  display: flex;
-}
-.moreinfo-tag {
-  background-color: #292828;
-}
-span.underline:hover {
-  /* text-decoration: underline; */
-  /* font-weight: bold; */
-  color:#00cecb !important;
-}
+
 p.underline:hover {
   text-decoration: underline;
   /* font-weight: bold; */
-  color:#f7fa66 !important;
+  color:#C8B2D6 !important;
 }
 .animate__animated {
     --animate-duration  : 1.2s;

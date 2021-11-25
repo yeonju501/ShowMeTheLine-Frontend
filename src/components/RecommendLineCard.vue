@@ -26,7 +26,6 @@
     </template>
     </v-hover>
     </label>
-    <!-- <input type="checkbox"  :id="movieCard.id" @click="selectMovie"> -->
   </div>
 
 </template>

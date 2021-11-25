@@ -10,14 +10,13 @@
         <div class="px-3 col-4"><input class="form-control mr-sm-2" v-model="search" type="text" placeholder="영화를 검색하세요" aria-label="Search"></div>
         <div class="col-1"><button class="btn-1"  type="submit">SEARCH</button></div>
         <div class="col-1"><button class="btn-1"  onClick="history.go(0)">RESET</button></div>
-        <!-- <div><button class="btn btn-outline-light ml-auto mr-4" onClick="history.go(0)">새로고침</button></div> -->
         </div>
        
       </form>
 
     
 
-    <!-- <div class="container"> -->
+    
       <div class="row">
       <movie-card
         v-for="movieCard in paginatedData"
@@ -45,7 +44,7 @@
 // @ is an alias to /src
 import MovieCard from '@/components/MovieCard.vue'
 import axios from 'axios'
-// import jwt_decode from 'jwt-decode'
+
 
 export default {
   name: 'Home',
@@ -119,13 +118,9 @@ export default {
           listSize = this.pageSize,
           page = Math.floor(listLeng / listSize);
       if (listLeng % listSize > 0) page += 1;
-      
-      /*
-      아니면 page = Math.floor((listLeng - 1) / listSize) + 1;
-      이런식으로 if 문 없이 고칠 수도 있다!
-      */
       return page;
     },
+    
     paginatedData () {
       const start = this.pageNum * this.pageSize,
             end = start + this.pageSize;
