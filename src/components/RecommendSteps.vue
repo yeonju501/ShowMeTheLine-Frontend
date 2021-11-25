@@ -360,6 +360,7 @@ export default {
   },
   selectMovie: function(movie_id, card_num) {
     this.selectIds.push(movie_id)
+    console.log(this.selectIds)
     this.e1 = card_num + 1
     if (card_num === 4) {
       this.sendResult()
