@@ -1,6 +1,5 @@
 <template>
 <div>
-  
       <div class="container">
       <form @submit="searchMovie">
         <div class="row align-items-center">
@@ -9,14 +8,15 @@
         <!-- <div class="ml-5 col-1"><i class="fas fa-search"></i></div> -->
         <div class="px-3 col-4"><input class="form-control mr-sm-2" v-model="search" type="text" placeholder="영화를 검색하세요" aria-label="Search"></div>
         <div class="col-1"><button class="btn-1"  type="submit">SEARCH</button></div>
-        <div class="col-1"><button class="btn-1"  onClick="history.go(0)">RESET</button></div>
+        <div class="col-1"><button class="btn-1"  @click="reset">RESET</button></div>
         <!-- <div><button class="btn btn-outline-light ml-auto mr-4" onClick="history.go(0)">새로고침</button></div> -->
         </div>
        
       </form>
 
-    
-
+    <br>
+    <span v-show="searched" style="font-size:20px;">{{keyword}}의 검색 결과</span>
+    <span style="display: flex; margin-left:20px; font-size:20px">{{movies.length}}건의 영화</span>
     <!-- <div class="container"> -->
       <div class="row">
       <movie-card
@@ -59,6 +59,8 @@ export default {
       pageNum: 0,
       pageSize: 12,
       search: '',
+      keyword: '',
+      searched: false,
     }
   },
   methods: {
@@ -95,20 +97,26 @@ export default {
 
     searchMovie(event) {
       event.preventDefault()
-      const keyword = this.search
+      this.keyword = this.search
       const temp = []
-      
       this.movies.forEach((element)=>{
-        console.log(element.title)
         const title = element.title
-        if (title.indexOf(keyword) !== -1) {
+        if (title.indexOf(this.keyword) !== -1) {
           temp.push(element)   
         }
-        this.movies = temp  
+        this.movies = temp
+        this.searched = true 
 
       })
        
       this.search = ''
+    },
+
+    reset: function(event){
+      event.preventDefault()
+      this.searched = false
+      history.go(0)
+      
     }
 
   },

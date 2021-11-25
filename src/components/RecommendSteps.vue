@@ -265,11 +265,11 @@
       </v-stepper-content> -->
 
       <!-- 6 결과화면 -->
-      <v-stepper-content step="5" class="">
+      <v-stepper-content step="5" >
         <v-card
           class="row card-bg"
         >
-        <h1 class="g-font card-bg"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요   </b> </h1>
+        <h1 class="g-font card-bg" style="margin-bottom:0"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요   </b> </h1>
         <movie-card
         v-for="movieCard in result"
         :key="movieCard.id"
@@ -413,5 +413,6 @@ export default {
   color: white !important; 
   background: rgb(114, 72, 72) !important; 
   margin-top: 15px !important; 
-}  
+} 
+
 </style>
