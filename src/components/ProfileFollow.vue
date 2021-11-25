@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{follower.username}}</p>
+    <h4>{{follower.username}}</h4>
   </div>
 </template>
 

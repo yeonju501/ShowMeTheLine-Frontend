@@ -10,11 +10,16 @@
     >
     </v-img> -->
 
-    <h3 class="d-flex justify-content-center mt-4">
-      <b>{{ review.movie.title }}</b>
-    </h3>
+    <div class="container align-item-center">
+    <div class="d-flex justify-content-center center"  style="font-size:20px;">
+      <b>{{ review.movie.line }}</b>
+    </div>
+    <div class="d-flex justify-content-end center">
+      <b>- {{ review.movie.title }}</b>
+    </div>
+    </div>
 
-    <v-card-text>
+    <!-- <v-card-text>
       <div class="d-flex justify-content-center">
       <star-rating 
 
@@ -31,21 +36,21 @@
       v-bind:star-size="15">
       </star-rating>
       </div>
-      <div><h4 class="mt-2"><b>{{ review.content }}</b></h4></div>
+      <div><h4 class="mt-3"><b>{{ review.content }}</b></h4></div>
       <div><h6>{{ review.updated_at.slice(0,10)}}</h6></div>
       <div><h6>{{ review.updated_at.slice(11,19)}}</h6></div>
       
-    </v-card-text>
+    </v-card-text> -->
   </v-card>
 </template>
 
 <script>
-import StarRating from 'vue-star-rating'
+// import StarRating from 'vue-star-rating'
 
   export default {
     name: 'ProfileReview',
     components: {
-      StarRating
+      // StarRating
     },
     props : {
       review : Object,
@@ -57,3 +62,10 @@ import StarRating from 'vue-star-rating'
     },
   }
 </script>
+
+<style>
+  .center {
+    vertical-align: middle;
+    text-align: center;
+  }
+</style>

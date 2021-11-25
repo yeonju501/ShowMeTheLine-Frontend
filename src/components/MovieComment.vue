@@ -16,10 +16,10 @@
     </star-rating>
 
    <div class=" row">
-      <a href="" class="text-decoration-none" @click="toProfile"><div class="col-2"><p>{{ comment.user.username }}</p></div></a>
+      <div class="col-2"><a href="" class="icon-color text-decoration-none" @click="toProfile"><p><b>{{ comment.user.username }}</b></p></a></div>
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
-      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="deleteComment">삭제</a></b></div>
-      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="updateComment">수정</a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="deleteComment"><i class="fa fa-trash icon-color"  aria-hidden="true"></i></a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="updateComment"><i class="fa fa-pen icon-color"  aria-hidden="true"></i></a></b></div>
       <component v-bind:is="updateForm" :review="review" @sendUpdate="sendUpdate" :movie_pk="movie_pk"></component>
     </div>
     <!-- <hr style="background-color:white">  -->

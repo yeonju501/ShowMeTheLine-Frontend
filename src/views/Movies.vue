@@ -158,7 +158,7 @@ export default {
 }
 .btn-2 {
   margin-bottom: 20px;
-  width:50px;
+  width:45px;
   height: 30px;
   border-radius: 23px;
   color: black;
