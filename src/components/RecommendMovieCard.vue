@@ -19,7 +19,7 @@
             >
               <!-- <p class="fw-bold m-2 font-center h5  ">{{line}}</p> -->
               <!-- <p class="m-3 h5" style="line-height:1.4; font-size:1.6em; font-weight:bold;">{{line}}</p> -->
-              <p class="m-2 font-center h5 " style="line-height:1.4; font-size:1.3em; font-weight: bold;">{{line}}</p>
+              <p class="m-1 font-center h4 go-font" style="line-height:1.4; font-size:1.3em; font-weight:bold;">{{line}}</p>
               
             </v-overlay>
           </v-fade-transition>
@@ -109,7 +109,7 @@ export default {
 }
 
 .go-font{
-  font-family:  'GowunDodum-Regular';
+  font-family: 'GowunDodum-Regular';
 }
 
 .v-card--reveal {

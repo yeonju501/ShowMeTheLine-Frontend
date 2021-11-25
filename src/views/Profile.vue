@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <h1 class="mt-5">{{profileName}}님 안녕하세요!</h1>
-    <a href="" v-if="profileId!=user_pk" v-show="following" @click="follow">
+    <a href="" v-if="profileId!=user_pk" v-show="!getFollowing" @click="follow">
       <i id="heart" style="color:crimson; font-size:45px; margin-top:7px;" class="fas fa-heart"></i></a>
-    <a href=""  v-if="profileId!=user_pk" v-show="!following" @click="follow">
+    <a href=""  v-if="profileId!=user_pk" v-show="getFollowing" @click="follow">
       <i id="heart" style="font-size:45px; margin-top:7px;" class="far fa-heart"></i></a>
     <div><b>FOLLOW</b></div>
     <hr>
@@ -87,7 +87,7 @@ export default {
     return {
       profileId: null,
       profileName: '',
-      following: null,
+      following: true,
       user_followings: [],
       followers: [],
       reviews: [],
@@ -152,11 +152,16 @@ export default {
   created: function(){
     if (localStorage.getItem('jwt')){
       this.getProfile()
-      this.getUser()
+      this.getUser()  
     } else {
       this.$router.push({name:'Login'})
     }
 
+  },
+  computed: {
+    getFollowing: function(){
+      return this.following
+    }
   }
 
 

@@ -17,7 +17,7 @@
           absolute
           color="#000000"
         >
-          <p class="m-3 font-center h3 " > 
+          <p class="m-1 font-center  go-font" style="line-height:1.4; font-size:1.3em; font-weight:bold;"> 
             {{movieCard.line}}
           </p>
         </v-overlay>
@@ -77,6 +77,27 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RIDIBatang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.ridi-font{
+  font-family: 'RIDIBatang';
+}
+
+.go-font{
+  font-family: 'GowunDodum-Regular';
+}
+
 label {
   display: block !important;
 }

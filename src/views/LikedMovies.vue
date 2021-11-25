@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="container">
   <h1>내가 찜한 영화</h1>
   <hr>
+  <span style="display: flex; margin-left:20px; font-size:20px">{{movies.length}}건의 영화</span>
     <div class="container">
       <div class="row">
         <movie-card
