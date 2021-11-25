@@ -7,14 +7,14 @@
     <br>
     <div class="form-group">
       <!-- <label for="username">사용자 이름</label> -->
-      <input class="form-control" type="text"  style = "width:500px;" 
+      <input class="form-control" type="text"  style = "width:350px;" 
         id="username" v-model="credentials.username"
         placeholder="아이디">
     </div>
     <br>
     <div class="form-group">
       <!-- <label for="password">비밀번호</label> -->
-      <input class="form-control" type="password" style = "width:500px;" 
+      <input class="form-control" type="password" style = "width:350px;" 
         id="password" v-model="credentials.password"
         placeholder="비밀번호">
     </div>
@@ -22,7 +22,7 @@
     <div class="form-group">
       <!-- <label for="passwordConfirmation">비밀번호 확인</label> -->
       <input
-        style = "width:500px;"
+        style = "width:350px;"
         class="form-control" 
         type="password" 
         id="passwordConfirmation" 
@@ -32,7 +32,7 @@
       >
     </div>
     <br>
-    <button class="btn btn-dark" @click="signup">회원가입</button>
+    <button class="btn" @click="signup">회원가입</button>
     </div>
 
   </div>
@@ -83,26 +83,26 @@ export default {
 }
 .bg-main::after {
   width: 100%;
-  height: 1200px;
+  height: 1029px;
   content: "";
-  background-image: url('https://media.discordapp.net/attachments/867763766396321846/912878610115858432/IMG_9812.jpg?width=833&height=590');
-  background-size: cover;
+  background-image: url('https://cdn.discordapp.com/attachments/867763766396321846/913125158464675911/5.jpg');
+  background-size: 1800px;
   background-repeat: no-repeat;
   position: absolute;
-  top: 0;
+  top: 1;
   left: 0;
-  z-index: -1;
-  opacity: 0.5;
+  z-index: -2;
+  opacity: 0.9;
 }
 
 .signupdiv {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 52%;
+  right: 0%;
   transform: translate(-50% ,-65%);
   border-radius: 20px;
-  background-color: rgba(157, 157, 157, 0.75);
-  width: 550px;
-  height: 500px;
+  background-color: rgba(157, 157, 157, 0);
+  width: 400px;
+  height: 450px;
 }
 </style>
