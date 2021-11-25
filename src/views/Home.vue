@@ -8,7 +8,10 @@
       <Sliders
       :movies="movieCards"
       :title="recommendTitle"
-      
+      />
+      <Sliders
+      :movies="popularmovieCards"
+      :title="popularTitle"
       />
       <!-- <movie-card
         v-for="movieCard in movieCards"
@@ -41,7 +44,9 @@ export default {
     return {
       buttonOn : true,
       movieCards: null,
+      popularmovieCards: null,
       recommendTitle:'평점이 높은 영화',
+      popularTitle:'인기가 많은 영화',
 
       //스와이퍼
       swiperOptions: {
@@ -78,6 +83,18 @@ export default {
         })
         .catch(err => console.log(err))
     },
+    loadPopularMovieCards: function(){
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:8000/movies/popularFive/',
+        headers: this.setToken(),
+
+      })
+        .then((res) => {
+          this.popularmovieCards = res.data
+        })
+        .catch(err => console.log(err))
+    },
     btnOn(){
       this.buttonOn = true
     },
@@ -100,7 +117,8 @@ export default {
   },
   created: function() {
     if (localStorage.getItem('jwt')){
-      this.loadMovieCards()
+      this.loadMovieCards(),
+      this.loadPopularMovieCards()
     } else {
       this.$router.push({name:'Login'})
     }
