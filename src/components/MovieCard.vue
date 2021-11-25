@@ -17,7 +17,7 @@
           color="#000000"
 
         >
-          <p class="fw-bold m-3 font-center h3 " > 
+          <p class="m-3 font-center h5 " > 
             {{movieCard.line}}
           </p>
         </v-overlay>

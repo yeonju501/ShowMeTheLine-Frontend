@@ -18,7 +18,7 @@
               color="rgb(0, 0, 0, 1)"
             >
               <!-- <p class="fw-bold m-2 font-center h5  ">{{line}}</p> -->
-              <p class="fw-bold m-3 " style="line-height:1.4; font-size:1.7em">{{line}}</p>
+              <p class="m-3 h5" style="line-height:1.4; font-size:1.7em">{{line}}</p>
                
               
             </v-overlay>

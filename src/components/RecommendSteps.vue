@@ -200,7 +200,7 @@
           color="grey lighten-1"
           class="row"
         >
-        <h1 class="mt-4 g-font "> <b>마지막 선택이예요!</b> </h1>
+        <h1 class="mt-4 g-font "> <b>마지막 선택이에요!</b> </h1>
         <recommend-line-card
         v-for="movieCard in movieCards4"
         :key="movieCard.id"
@@ -336,7 +336,6 @@ export default {
 
     })
       .then((res) => {
-        console.log(res.data)
         const result = []
         for(let i=0; i<res.data.length; i+=4){
           result.push(res.data.slice(i, i+4))
