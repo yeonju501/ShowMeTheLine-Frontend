@@ -17,7 +17,7 @@
           absolute
           color="#000000"
         >
-          <p class="fw-bold m-3 font-center h3 " > 
+          <p class="m-3 font-center h3 " > 
             {{movieCard.line}}
           </p>
         </v-overlay>
@@ -52,27 +52,13 @@ export default {
     }
     return config
   },
+  
     selectMovie: function (){
       console.log(this.movieCard.id)
       this.$emit('selectMovie', this.movieCard.id, this.cardNum)
     }
 
-  // loadRecommendMovieCards: function(){
-  //   axios({
-  //     method: 'get',
-  //     url: 'http://127.0.0.1:8000/movies/recommend/line/',
-  //     headers: this.setToken(),
 
-  //   })
-  //     .then((res) => {
-  //       const temp = []
-  //       res.data.forEach(function(element){
-  //         temp.push(element)
-  //       })
-  //       this.movies = temp
-  //     })
-  //     .catch(err => console.log(err))
-  // },
   }, 
   computed: {
     getImage: function() {

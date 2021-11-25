@@ -46,7 +46,7 @@ export default {
     return {
       buttonOn : true,
       swiperOptions: {
-          slidesPerView: '6',
+          slidesPerView: '4',
           centeredSlides: false,
           
 
@@ -86,4 +86,5 @@ export default {
 </script>
 
 <style>
+
 </style>
