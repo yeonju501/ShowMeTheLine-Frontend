@@ -1,58 +1,28 @@
 <template>
-  <div id="app" class = 'text-white bgblack'>
-    <b-navbar class="sticky-top bl" toggleable="lg" type="dark" variant="dark">
+  <div id="app" class = 'text-white bg-black'>
+    <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav v-if="isLogin">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'Home'}">
-                <b>Home</b>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'Movies'}">
-                <b>영화</b>
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{name:'LikedMovies'}">
-                <b>내가 찜한 영화</b> 
-              </router-link>
-            </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'Profile', params: { user: getName}}">
-                <b>프로필</b> 
-              </router-link>
-            </li>
-          </ul>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav style="margin-right:auto;" v-if="isLogin">
+            <b-nav-item style="margin-left:10px;" :to="{name:'Home'}"> ShowMeTheLine </b-nav-item>
+            <b-nav-item  :to="{name:'Movies'}"> 영화 </b-nav-item>
+            <b-nav-item  :to="{name:'LikedMovies'}"> 내가 찜한 영화 </b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav style="margin-right:auto;" v-else>
+            <b-nav-item style="margin-left:10px;" :to="{name:'Home'}"> Home </b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-navbar-nav v-if="isLogin">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <router-link class="nav-link" @click.native="logout" to="#"><b>로그아웃</b></router-link>
-              </li>
-            </ul>
-          </b-navbar-nav>
-          <b-navbar-nav v-else>
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{ name:'Signup'}">회원가입</router-link> 
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link" :to="{name:'Login'}">로그인</router-link>
-              </li>
-            </ul>
-          </b-navbar-nav>
-
+        <b-navbar-nav style="margin-left:auto; padding-right:10px;" v-if="isLogin">
+            <b-nav-item  :to="{ name: 'Profile', params: { user: getName}}"> 프로필 </b-nav-item>
+            <b-nav-item  @click.native="logout" :to="{name:'Home'}"> 로그아웃 </b-nav-item>
+        </b-navbar-nav>
+        <b-navbar-nav style="margin-left:auto; padding-right:10px;" v-else>
+          <b-nav-item :to="{ name:'Signup'}"> 회원가입 </b-nav-item>
+          <b-nav-item :to="{name:'Login'}"> 로그인 </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-    <p></p>
     <router-view @login="isLogin = true" />
   </div>
   
@@ -132,19 +102,14 @@ export default {
      font-style: normal;
 }
 
-@font-face {
-    font-family: 'NEXON Lv1 Gothic OTF';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif, ;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color:black;
+  /* color: #2c3e50; */
 }
 
 * {
@@ -156,11 +121,14 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #000000;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #f9fcfb;
 }
 
+.navbar-dark .navbar-nav .nav-link{
+  color: white !important;
+}
 </style>

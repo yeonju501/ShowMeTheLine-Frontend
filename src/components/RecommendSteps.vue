@@ -103,14 +103,13 @@
           class="row"
           
         >
-        <h1 class="mt-4 g-font "> <b>마음에 드는 대사를 골라주세요!</b> </h1>
+        <h1 class="mt-4 g-font"> <b>마음에 드는 대사를 골라주세요!</b> </h1>
         <recommend-line-card
         v-for="movieCard in movieCards1"
         :key="movieCard.id"
         :movieCard="movieCard"
         :cardNum="1"
-        class="col-md-3 col-sm-6 py-3 " 
-        style=""
+        class="col-md-3 col-sm-6 py-3"
         @selectMovie="selectMovie"
       >
       </recommend-line-card>
@@ -137,7 +136,7 @@
           color="grey lighten-1"
           class="row"
         >
-        <h1 class="mt-4 g-font "> <b>맞춤 영화를 추천해드려요!</b> </h1>
+        <h1 class="mt-4 g-font"> <b>맞춤 영화를 추천해드려요!</b> </h1>
         <recommend-line-card
         v-for="movieCard in movieCards2"
         :key="movieCard.id"
@@ -168,7 +167,7 @@
           color="grey lighten-1"
           class="row"
         >
-        <h1 class="mt-4 g-font "> <b>어떤 영화가 기다리고 있을까요?</b> </h1>
+        <h1 class="mt-4 g-font"> <b>어떤 영화가 기다리고 있을까요?</b> </h1>
         <recommend-line-card
         v-for="movieCard in movieCards3"
         :key="movieCard.id"
@@ -200,12 +199,12 @@
           color="grey lighten-1"
           class="row"
         >
-        <h1 class="mt-4 g-font "> <b>마지막 선택이에요!</b> </h1>
+        <h1 class="mt-4 g-font"> <b>마지막 선택이에요!</b> </h1>
         <recommend-line-card
         v-for="movieCard in movieCards4"
         :key="movieCard.id"
         :movieCard="movieCard"
-        class="col-md-3 col-sm-6 py-3"
+        class="col-md-3 col-sm-6 py-3 "
         @selectMovie="selectMovie"
         :cardNum="4"
       >
@@ -268,10 +267,9 @@
       <!-- 6 결과화면 -->
       <v-stepper-content step="5" class="">
         <v-card
-          color="grey lighten-1"
           class="row card-bg"
         >
-        <h1 class="g-font card-bg"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요.   </b> </h1>
+        <h1 class="g-font card-bg mb-0"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요.   </b> </h1>
         <movie-card
         v-for="movieCard in result"
         :key="movieCard.id"

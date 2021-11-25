@@ -99,7 +99,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .v-card--reveal {
 align-items: center;
 bottom: 0;
@@ -116,5 +116,8 @@ width: 100%;
 .modal_header
 .modal_body {
   background-color: rgb(192, 68, 68);
+}
+.container {
+  margin: 0;
 }
 </style>

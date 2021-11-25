@@ -77,6 +77,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+label {
+  display: block !important;
+}
 </style>
