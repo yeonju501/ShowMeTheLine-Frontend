@@ -1,6 +1,12 @@
 <template>
-  <div>
-    <h1>{{userName}}님 안녕하세요!</h1>
+  <div class="container">
+    <h1>{{profileName}}님 안녕하세요!</h1>
+    <a href="" v-if="profileId!=user_pk" v-show="following" @click="follow">
+      <i id="heart" style="color:crimson; font-size:45px; margin-top:70px; margin-left:20px;" class="fas fa-heart"></i>
+    </a>
+    <a href=""  v-if="profileId!=user_pk" v-show="!following" @click="follow">
+      <i id="heart" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i>
+    </a>
     <hr>
     <!-- <p>{{followers}}</p>
     <p>{{followings}}</p> -->
@@ -38,10 +44,13 @@ export default {
   },
   data(){
     return{
-      userName: '',
-      followings: [],
+      profileId: null,
+      profileName: '',
+      following: null,
+      user_followings: [],
       followers: [],
       reviews: [],
+      username:  '',
     }
   },
   props:{
@@ -55,25 +64,56 @@ export default {
     }
     return config
     },
+    follow: function(event){
+      event.preventDefault()
+      axios({
+        method: 'POST',
+        url: `http://127.0.0.1:8000/accounts/${this.profileId}/follow/`,
+        headers: this.setToken(),
+      }).then(()=>{
+        this.getUser()
+      })
+
+    },
     getProfile: function(){
-      console.log(this.user)
       axios({
         method: 'get',
         url: `http://127.0.0.1:8000/accounts/profile/${this.user}/`,
         headers: this.setToken(),
       }).then((res)=>{
-        console.log(res.data)
-        this.userName = res.data.username
+        this.profileId = res.data.id
+        this.profileName = res.data.username
         this.followings = res.data.followings
         this.followers = res.data.followers
         this.reviews = res.data.review_set
       })
-    }
+    },
+    getUser: function(){
+      axios({
+        method: 'get',
+        url: `http://127.0.0.1:8000/accounts/userinfo/`,
+        headers: this.setToken(),
+      }).then((res) => {
+        this.user_pk = res.data.id
+        this.username = res.data.username
+        this.user_followings = res.data.followings
+        if (this.user_followings.includes(this.profileId)){
+          this.following = true
+        } else {
+          this.following = false
+        }  
 
+      })
+    },
 
   },
   created: function(){
-    this.getProfile()
+    if (localStorage.getItem('jwt')){
+      this.getProfile()
+      this.getUser()
+    } else {
+      this.$router.push({name:'Login'})
+    }
 
   }
 

@@ -11,7 +11,7 @@
     </v-img> -->
 
     <h1 class="d-flex justify-content-center mt-4">
-      {{ review.movie }}
+      {{ review.movie.title }}
     </h1>
 
     <v-card-text>
@@ -28,13 +28,12 @@
 
       v-bind:padding="8"
       v-bind:border-width="2"
-      v-bind:star-size="15"
-      @rating-selected="setRating">
+      v-bind:star-size="15">
       </star-rating>
       </div>
       <div><h4 class="mt-3"><b>{{ review.content }}</b></h4></div>
-      <div><h7>{{ review.updated_at.slice(0,10)}}</h7></div>
-      <div><h7>{{ review.updated_at.slice(11,19)}}</h7></div>
+      <div><h6>{{ review.updated_at.slice(0,10)}}</h6></div>
+      <div><h6>{{ review.updated_at.slice(11,19)}}</h6></div>
       
     </v-card-text>
   </v-card>

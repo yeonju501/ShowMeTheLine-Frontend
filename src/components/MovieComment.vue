@@ -15,10 +15,10 @@
       @rating-selected="setRating">
     </star-rating>
     <div class=" row">
-      <div class="col-2"><p>{{ comment.user.username }}</p></div>
+      <a href="" class="text-decoration-none" @click="toProfile"><div class="col-2"><p>{{ comment.user.username }}</p></div></a>
       <div class="col-8"><p><b>{{ comment.content }}</b></p></div>
-      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="deleteComment">삭제</a></b></div>
-      <div class="col-1"><b><a href="" v-if="getName==currentName" @click="updateComment">수정</a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="deleteComment">삭제</a></b></div>
+      <div class="col-1"><b><a href="" v-if="getName==getUsername" @click="updateComment">수정</a></b></div>
       <component v-bind:is="updateForm" :review="review" @sendUpdate="sendUpdate" :movie_pk="movie_pk"></component>
     </div>
     <!-- <hr style="background-color:white">  -->
@@ -39,8 +39,6 @@ export default {
 
   data() {
     return {
-      getName: '',
-      currentName: '',
       updateForm: '',
       review:'',
     }
@@ -49,6 +47,7 @@ export default {
   props: {
     comment: Object,
     movie_pk: Number,
+    username:String,
   },
 
   methods: {
@@ -59,7 +58,6 @@ export default {
     }
     return config
     },
-
     deleteComment(event) {
       event.preventDefault()
       const movie_pk = this.movie_pk
@@ -89,6 +87,10 @@ export default {
         console.error(err)
       })
     },
+    toProfile: function(){
+      this.$router.push({name:'Profile', params:{user:this.comment.user.username}})
+      
+    },
     sendUpdate(){
       this.updateForm=''
       this.$emit('loadComments')
@@ -104,6 +106,12 @@ export default {
     getRating() {
       return this.comment.rank / 2
     },
+    getName(){
+      return this.comment.user.username
+    },
+    getUsername(){
+      return this.username
+    }
   },
 
   created: function() {

@@ -68,6 +68,7 @@
               :key="id"
               :comment="content"
               :movie_pk="movie_pk"
+              :username="username"
               @loadComments="loadComments"
             />
             
@@ -125,7 +126,6 @@ export default {
      
   },
   methods: {
-    
     setRating(rating) {
       this.myrating = rating * 2
     },
@@ -189,7 +189,6 @@ export default {
         this.user_pk = res.data.id
         this.username = res.data.username
         this.user_likemovies = res.data.like_movies
-        console.log(this.user_likemovies)
         if (this.user_likemovies.includes(this.movie_pk)){
           this.liking = true
         } else {
@@ -220,7 +219,6 @@ export default {
       }
       if (commentItem.content) {
         const movie_pk = this.movie_pk
-        console.log(commentItem)
         axios({
           method: 'post',
           url: `http://127.0.0.1:8000/movies/${movie_pk}/review/`,
