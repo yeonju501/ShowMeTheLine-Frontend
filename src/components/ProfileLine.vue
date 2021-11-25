@@ -11,7 +11,7 @@
     </v-img> -->
 
     <div class="container align-item-center">
-    <div class="d-flex justify-content-center center"  style="font-size:20px;">
+    <div class="d-flex justify-content-center center"  style="font-size:19px;">
       <b>{{ review.movie.line }}</b>
     </div>
     <div class="d-flex justify-content-end center">

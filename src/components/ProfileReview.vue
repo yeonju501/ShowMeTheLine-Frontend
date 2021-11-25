@@ -31,7 +31,7 @@
       v-bind:star-size="15">
       </star-rating>
       </div>
-      <div><h4 class="mt-2"><b>{{ review.content }}</b></h4></div>
+      <div><h5 class="mt-2"><b>{{ review.content }}</b></h5></div>
       <div><h6>{{ review.updated_at.slice(0,10)}}</h6></div>
       <div><h6>{{ review.updated_at.slice(11,19)}}</h6></div>
       
