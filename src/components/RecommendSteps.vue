@@ -269,7 +269,7 @@
         <v-card
           class="row card-bg"
         >
-        <h1 class="g-font card-bg mb-0"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요.   </b> </h1>
+        <h1 class="g-font card-bg"> <b>추천 완료! 마음에 드는 영화는 찜 할 수 있어요   </b> </h1>
         <movie-card
         v-for="movieCard in result"
         :key="movieCard.id"

@@ -1,29 +1,46 @@
 <template>
   <div class="container">
-    <h1>{{profileName}}님 안녕하세요!</h1>
+    <h1 class="mt-5">{{profileName}}님 안녕하세요!</h1>
     <a href="" v-if="profileId!=user_pk" v-show="following" @click="follow">
-      <i id="heart" style="color:crimson; font-size:45px; margin-top:70px; margin-left:20px;" class="fas fa-heart"></i>
-    </a>
+      <i id="heart" style="color:crimson; font-size:45px; margin-top:7px;" class="fas fa-heart"></i></a>
     <a href=""  v-if="profileId!=user_pk" v-show="!following" @click="follow">
-      <i id="heart" style="font-size:45px; margin-top:70px; margin-left:20px;" class="far fa-heart"></i>
-    </a>
+      <i id="heart" style="font-size:45px; margin-top:7px;" class="far fa-heart"></i></a>
+    <div><b>FOLLOW</b></div>
     <hr>
-    <h2>팔로워</h2>
+
+
+
+    <div class="container"> 
+    <div class="row">
+
+    <div class='col-6 bg'>
+    <h2 class="mt-2 brown"><b>팔로워</b></h2>
+    <hr>
     <profile-follow
       v-for="(follower, idx) in followers"
       :key="idx"
       :follower="follower"
-      ></profile-follow>
-      <br>
-    <h2>팔로잉</h2>
+      >
+      ></profile-follow>  
+    </div> 
+
+    <div class='col-6 bg'>
+    <h2 class="mt-2 brown"><b>팔로우</b></h2>
+    <hr>
     <profile-follow
       v-for="(follower, idx) in followings"
       :key="idx"
-      :follower="follower"></profile-follow> 
-    
+      :follower="follower"
+      ></profile-follow> 
+    </div>
+    </div>  
+    </div>
 
+
+    <hr>
     <!-- 마이리뷰 -->
-    <h2 class="left">My Review</h2>
+    <div class="bg container">  
+    <h2 class="mt-2 brown"><b>나의 리뷰</b></h2>
     <hr>
     <div class="row">
     <profile-review
@@ -33,6 +50,22 @@
           class="col-12 col-sm-4 py-3">
     </profile-review>
     </div>
+    </div>
+    <hr>
+
+    <!-- My Line -->
+    <div class="bg container">  
+    <h2 class="mt-2 brown"><b>나의 대사</b></h2>
+    <hr>
+    <div class="row">
+    <profile-line
+       v-for="review in reviews"
+          :key="review.id"
+          :review="review"
+          class="col-12 col-sm-4 py-3">
+    </profile-line>
+    </div>
+    </div>
 
   </div>  
 </template>
@@ -41,12 +74,14 @@
 import axios from 'axios'
 import ProfileReview from '../components/ProfileReview'
 import ProfileFollow from '../components/ProfileFollow.vue'
+import ProfileLine from '../components/ProfileLine.vue'
 
 export default {
   name:'Profile',
   components: {
     ProfileReview,
     ProfileFollow,
+    ProfileLine
   },
   data(){
     return {
@@ -57,6 +92,7 @@ export default {
       followers: [],
       reviews: [],
       username:  '',
+      
     }
   },
   props:{
@@ -132,4 +168,16 @@ export default {
 .left { 
   margin-left: 20px;
   text-align: left; }
+
+
+.bg {
+  padding-top: 5px;
+  background-color: wheat;
+  color: black;
+  border-radius: 10px;
+} 
+.brown {
+  color: rgb(168, 91, 47);  
+}
+  
 </style>

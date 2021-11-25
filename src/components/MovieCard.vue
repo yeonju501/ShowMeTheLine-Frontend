@@ -17,7 +17,7 @@
           color="#000000"
 
         >
-          <p class="m-3 font-center h5 " > 
+          <p class="m-2 font-center h5 " style="line-height:1.4; font-size:1.3em; font-weight: bold;"> 
             {{movieCard.line}}
           </p>
         </v-overlay>
@@ -116,6 +116,7 @@ width: 100%;
 .modal_header
 .modal_body {
   background-color: rgb(192, 68, 68);
+  
 }
 .container {
   margin: 0;
